@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Apache TomEE</title>
+	<meta name="description"
+		  content="Apache TomEE is a lightweight, yet powerful, JavaEE Application server with feature rich tooling." />
+	<meta name="keywords" content="tomee,asf,apache,javaee,jee,shade,embedded,test,junit,applicationcomposer,maven,arquillian" />
+	<meta name="author" content="Luka Cvetinovic for Codrops" />
+	<link rel="icon" href="../favicon.ico">
+	<link rel="icon"  type="image/png" href="../favicon.png">
+	<meta name="msapplication-TileColor" content="#80287a">
+	<meta name="theme-color" content="#80287a">
+	<link rel="stylesheet" type="text/css" href="../css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../css/owl.css">
+	<link rel="stylesheet" type="text/css" href="../css/animate.css">
+	<link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.1.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../fonts/eleganticons/et-icons.css">
+	<link rel="stylesheet" type="text/css" href="../css/jqtree.css">
+	<link rel="stylesheet" type="text/css" href="../css/idea.css">
+	<link rel="stylesheet" type="text/css" href="../css/cardio.css">
+
+	<script type="text/javascript">
+		<!-- Matomo -->
+		var _paq = window._paq = window._paq || [];
+		/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+		/* We explicitly disable cookie tracking to avoid privacy issues */
+		_paq.push(['disableCookies']);
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function () {
+			var u = "//matomo.privacy.apache.org/";
+			_paq.push(['setTrackerUrl', u + 'matomo.php']);
+			_paq.push(['setSiteId', '5']);
+			var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+			g.async = true;
+			g.src = u + 'matomo.js';
+			s.parentNode.insertBefore(g, s);
+		})();
+		<!-- End Matomo Code -->
+    </script>
+</head>
+
+<body>
+    <div class="preloader">
+		<img src="../img/loader.gif" alt="Preloader image">
+	</div>
+	    <nav class="navbar">
+		<div class="container">
+		  <div class="row">          <div class="col-md-12">
+
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/" title="Apache TomEE">
+				    <span>
+
+				    
+                        <img 
+							src="../img/apache_tomee-logo.svg"
+							onerror="this.src='../img/apache_tomee-logo.jpg'"
+							height="50"
+							>
+                    
+
+                    </span>
+                </a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right main-nav">
+					<li><a href="../docs.html">Documentation</a></li>
+					<li><a href="../community/index.html">Community</a></li>
+					<li><a href="../security/security.html">Security</a></li>
+					<li><a class="btn btn-accent accent-orange no-shadow" href="../download.html">Downloads</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		   </div></div>
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+
+    <div id="main-block" class="container main-block">
+        <div class="row title">
+          <div class="col-md-12">
+            <div class='page-header'>
+              
+              <h1>Configuration and Assembly</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Disclaimer that we do tweak and change this code frequently, without notice.
+It is the very heart of OpenEJB.
+To keep things tight and clean, we reserve the right to change it at anytime.
+Do not consider it a stable public API.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview_in_code">Overview in Code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>First a glimpse of how OpenEJB looks internally.
+Here&#8217;s a test that builds OpenEJB using it&#8217;s internal API.
+This is somewhat similar to how you might see people constructing Jetty in code.
+All our internal tests look like this.</p>
+</div>
+<div class="paragraph">
+<p>This usage involves no xml parsing or classpath scanning.
+If you don&#8217;t give it to OpenEJB, OpenEJB doesn&#8217;t know about it.
+This is OpenEJB with all the magic stripped away.
+At a high level:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>You build your app in code using the JAXB tree in code and hand it to the <code>ConfigurationFactory</code>.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>The <code>org.apache.openejb.jee</code> package contains JAXB trees for ejb-jar.xml, beans.xml and all the Java EE deployment descriptors.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>The <code>ConfigurationFactory</code> will produce a fully canonical version of the app called the <code>Info</code> tree by:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Merging all sources of meta-data&#8201;&#8212;&#8201;xml and annotations</p>
+</li>
+<li>
+<p>Resolving all ejb, persistence unit, datasource and other references</p>
+</li>
+<li>
+<p>Validating the app and looking for mistakes</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>The <code>Info</code> tree is</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>The singular source of information about the application from this point forward.</p>
+</li>
+<li>
+<p>Pure data with no smarts or logic of any kind.</p>
+</li>
+<li>
+<p>The instruction set of what would be built by the assembler.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>The <code>Assembler</code> will build and start the application exactly as described in the <code>Info</code> tree.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>When this step completes, you have a running application.</p>
+</li>
+<li>
+<p>Any failures prior to this point require no cleanup.
+Only the assembler builds "live" objects.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>An example of what this looks like in code</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>import javax.ejb.LocalBean;
+import javax.ejb.Stateful;
+import javax.naming.InitialContext;
+
+import junit.framework.TestCase;
+import org.apache.openejb.assembler.classic.Assembler;
+import org.apache.openejb.assembler.classic.SecurityServiceInfo;
+import org.apache.openejb.assembler.classic.TransactionServiceInfo;
+import org.apache.openejb.client.LocalInitialContextFactory;
+import org.apache.openejb.config.ConfigurationFactory;
+import org.apache.openejb.jee.EjbJar;
+import org.apache.openejb.jee.StatefulBean;
+
+public class StatefulTest extends TestCase {
+
+    @Override
+    protected void setUp() throws Exception {
+
+        System.setProperty(javax.naming.Context.INITIAL_CONTEXT_FACTORY, LocalInitialContextFactory.class.getName());
+
+        ConfigurationFactory config = new ConfigurationFactory();
+        Assembler assembler = new Assembler();
+
+        assembler.createTransactionManager(config.configureService(TransactionServiceInfo.class));
+        assembler.createSecurityService(config.configureService(SecurityServiceInfo.class));
+
+        EjbJar ejbJar = new EjbJar();
+        ejbJar.addEnterpriseBean(new StatefulBean(MyBean.class));
+
+        assembler.createApplication(config.configureApplication(ejbJar));
+    }
+
+    public void test() throws Exception {
+        InitialContext context = new InitialContext();
+        MyBean myBean = (MyBean) context.lookup("MyBeanLocalBean");
+
+        assertEquals("pan", myBean.echo("nap"));
+    }
+
+    @Stateful
+    @LocalBean
+    public static class MyBean {
+
+        public String echo(String string) {
+            StringBuilder sb = new StringBuilder(string);
+            return sb.reverse().toString();
+        }
+    }
+}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_logical_overview">Logical Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Slightly more detailed account of the above.
+Our startup and deploy world is broken into two phases:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>configuration (app.jar -&gt; AppInfo)  we build up a fully normalized and validated tree.
+Some of the steps are</p>
+<div class="ulist">
+<ul>
+<li>
+<p>read in descriptors</p>
+</li>
+<li>
+<p>process annotations filling in the descriptor tree</p>
+</li>
+<li>
+<p>validating app compliance</p>
+</li>
+<li>
+<p>resolving resource references</p>
+</li>
+<li>
+<p>resolving ejb references</p>
+</li>
+<li>
+<p>turning the descriptor tree into Info objects for final assembly</p>
+</li>
+<li>
+<p>final validation check</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>assembly (AppInfo -&gt; actual running app)  we assemble a running app as detailed by the AppInfo</p>
+<div class="ulist">
+<ul>
+<li>
+<p>creating classloaders for the application</p>
+</li>
+<li>
+<p>creating EntityManagers and EntityManagerFactories</p>
+</li>
+<li>
+<p>creating live objects associated with resource-env-refs</p>
+</li>
+<li>
+<p>creating deployment (CoreDeploymentInfo) objects for each ejb</p>
+</li>
+<li>
+<p>creating the jndi enc of each ejb</p>
+</li>
+<li>
+<p>adding method permission objects into the security system (JACC Provider)</p>
+</li>
+<li>
+<p>creating transaction policy objects for each ejb</p>
+</li>
+<li>
+<p>creating interceptor stacks and bindings for each ejb</p>
+</li>
+<li>
+<p>adding ejbs to containers (which may also do things like create pools)</p>
+</li>
+<li>
+<p>adding ejbs to the live ContainerSystem registry of ejbs</p>
+</li>
+<li>
+<p>adding global jndi entries for each ejb</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The listings above aren&#8217;t necesarrily complete or perfectly ordered, but generally show the nature of the work done in each phase.</p>
+</div>
+<div class="sect2">
+<h3 id="_configuration_phase">Configuration Phase</h3>
+<div class="paragraph">
+<p>A goal is that nothing gets through configuration and into assembly if it can&#8217;t actually be built.
+The configuration phase is where we&#8217;re supposed to wipe away any ambiguity, fully normalize the app, make sure it&#8217;s internally consistent, spec compliant and generally good to go.
+If it&#8217;s not, no worries as we actually haven&#8217;t built anything permanent yet.
+Everything in the configuration phase is temporary.
+If it fails the configuration phase we just issue an error and say "App will not be loaded" and that&#8217;s it, there&#8217;s nothing to undo.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_info_objects_data_between_configuration_and_assembly">Info Objects - Data between Configuration and Assembly</h3>
+<div class="paragraph">
+<p>The output of the configuration phase is what we call Info objects and the root of that tree is OpenEjbConfiguration.
+These objects are all simple, serializable data types with no methods, no constructors and no code or logic of any kind.
+We even have a test that uses ASM to walk down the Info tree and check that everything is compliant to these strict rules.</p>
+</div>
+<div class="paragraph">
+<p>All of the aforementioned configuration phase sits behind this info object tree and an interface that produces it:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>org.apache.openejb.assembler.classic.OpenEjbConfiguration</p>
+</li>
+<li>
+<p>org.apache.openejb.assembler.classic.OpenEjbConfigurationFactory</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The job of the OpenEjbConfigurationFactory is simply to produce an  OpenEjbConfiguration tree.
+With this simple decoupling when the time comes we can actually support much different styles of use/topologies.
+For example, a cluster scenario.
+We could create an OpenEjbConfigurationFactory implementation that actually pulled the OpenEjbConfiguration from a central store or some sort of configuration server of our creation.
+Perhaps, someday we write an OpenEjbConfigurationFactory implementation to wrap the existing one and look for any changed files.
+If nothing has changed since last boot, we simple deserialize an OpenEjbConfiguration tree saved from a previous boot as a way of reducing startup time on very large apps.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_assembly">Assembly</h3>
+<div class="paragraph">
+<p>The assembly phase is where real running things are actually built.
+This process is inherently ingrained in the details on how OpenEJB works internally.
+Keeping it separated from descriptor parsing, validation, resolving, etc.
+keeps the actual "openejb building" code as simple as possible.
+It also allows for some flexibility and change to take place architecturally with less chance of it rippling through the entire system.
+However it&#8217;s also not so generic (like spring, etc.) that becomes very difficult to get things built in a certain way or in a certain order requiring you to jump through several hoops just to keep the generic system as beautiful as possible.
+It knows all the details on how to build each individual part and in what order to build them.</p>
+</div>
+<div class="paragraph">
+<p>In OpenEJB, the Assembler is not supposed to be the gem of the project that we keep clean, motivating us to push complex things out into other areas for other people (usually users) to worry about.
+In fact, it&#8217;s the opposite.
+The runtime system gets top priority on it&#8217;s architectural needs and the assembler gets last priority.
+If there&#8217;s something we can do in the Assembler that saves the rest of the system from complexity, we gladly throw the Assembler on that grenade.
+Our philosophy is that you can&#8217;t make 100% of your system "perfect" all the time and sometime the mess has to go somewhere.
+The assembler is where.
+It&#8217;s purposely not over architected so that it can continue to serve as a place to take up slack and not make all this stuff harder than it has to be.</p>
+</div>
+</div>
+</div>
+</div>
+            </div>
+            
+        </div>
+    </div>
+<div style="margin-bottom: 30px;"></div>
+<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 text-center-mobile">
+					<h3 class="white">Be simple.  Be certified. Be Tomcat.</h3>
+					<h5 class="light regular light-white">"A good application in a good server"</h5>
+					<ul class="social-footer">
+						<li><a href="https://www.facebook.com/ApacheTomEE/"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="https://twitter.com/apachetomee"><i class="fa fa-twitter"></i></a></li>
+					</ul>
+					<h5 class="light regular light-white">
+						<a href="../privacy-policy.html" class="white">Privacy Policy</a>
+					</h5>
+				</div>
+				<div class="col-sm-6 text-center-mobile">
+					<div class="row opening-hours">
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="../latest/docs/" class="white">Documentation</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="../latest/docs/admin/configuration/index.html" class="regular light-white">How to configure</a></li>
+								<li><a href="../latest/docs/admin/file-layout.html" class="regular light-white">Dir. Structure</a></li>
+								<li><a href="../latest/docs/developer/testing/index.html" class="regular light-white">Testing</a></li>
+								<li><a href="../latest/docs/admin/cluster/index.html" class="regular light-white">Clustering</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="../latest/examples/" class="white">Examples</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="../latest/examples/simple-cdi-interceptor.html" class="regular light-white">CDI Interceptor</a></li>
+								<li><a href="../latest/examples/rest-cdi.html" class="regular light-white">REST with CDI</a></li>
+								<li><a href="../latest/examples/ejb-examples.html" class="regular light-white">EJB</a></li>
+								<li><a href="../latest/examples/jsf-managedBean-and-ejb.html" class="regular light-white">JSF</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="../community/index.html" class="white">Community</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="../community/contributors.html" class="regular light-white">Contributors</a></li>
+								<li><a href="../community/social.html" class="regular light-white">Social</a></li>
+								<li><a href="../community/sources.html" class="regular light-white">Sources</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="../security/index.html" class="white">Security</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="https://apache.org/security" target="_blank" class="regular light-white">Apache Security</a></li>
+								<li><a href="https://apache.org/security/projects.html" target="_blank" class="regular light-white">Security Projects</a></li>
+								<li><a href="https://cve.mitre.org" target="_blank" class="regular light-white">CVE</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row bottom-footer text-center-mobile">
+				<div class="col-sm-12 light-white">
+					<p>Copyright &copy; 1999-2022 The Apache Software Foundation, Licensed under the Apache License, Version 2.0. Apache TomEE, TomEE, Apache, the Apache feather logo, and the Apache TomEE project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Holder for mobile navigation -->
+	<div class="mobile-nav">
+        <ul>
+          <li><a hef="../latest/docs/admin/index.html">Administrators</a>
+          <li><a hef="../latest/docs/developer/index.html">Developers</a>
+          <li><a hef="../latest/docs/advanced/index.html">Advanced</a>
+          <li><a hef="../community/index.html">Community</a>
+        </ul>
+		<a href="#" class="close-link"><i class="arrow_up"></i></a>
+	</div>
+	<!-- Scripts -->
+	<script src="../js/jquery-1.11.1.min.js"></script>
+	<script src="../js/owl.carousel.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/wow.min.js"></script>
+	<script src="../js/typewriter.js"></script>
+	<script src="../js/jquery.onepagenav.js"></script>
+	<script src="../js/tree.jquery.js"></script>
+	<script src="../js/highlight.pack.js"></script>
+    <script src="../js/main.js"></script>
+		</body>
+
+</html>
+

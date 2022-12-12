@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Apache TomEE</title>
+	<meta name="description"
+		  content="Apache TomEE is a lightweight, yet powerful, JavaEE Application server with feature rich tooling." />
+	<meta name="keywords" content="tomee,asf,apache,javaee,jee,shade,embedded,test,junit,applicationcomposer,maven,arquillian" />
+	<meta name="author" content="Luka Cvetinovic for Codrops" />
+	<link rel="icon" href="favicon.ico">
+	<link rel="icon"  type="image/png" href="favicon.png">
+	<meta name="msapplication-TileColor" content="#80287a">
+	<meta name="theme-color" content="#80287a">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/owl.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.1.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/eleganticons/et-icons.css">
+	<link rel="stylesheet" type="text/css" href="css/jqtree.css">
+	<link rel="stylesheet" type="text/css" href="css/idea.css">
+	<link rel="stylesheet" type="text/css" href="css/cardio.css">
+
+	<script type="text/javascript">
+		<!-- Matomo -->
+		var _paq = window._paq = window._paq || [];
+		/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+		/* We explicitly disable cookie tracking to avoid privacy issues */
+		_paq.push(['disableCookies']);
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function () {
+			var u = "//matomo.privacy.apache.org/";
+			_paq.push(['setTrackerUrl', u + 'matomo.php']);
+			_paq.push(['setSiteId', '5']);
+			var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+			g.async = true;
+			g.src = u + 'matomo.js';
+			s.parentNode.insertBefore(g, s);
+		})();
+		<!-- End Matomo Code -->
+    </script>
+</head>
+
+<body>
+    <div class="preloader">
+		<img src="img/loader.gif" alt="Preloader image">
+	</div>
+	    <nav class="navbar">
+		<div class="container">
+		  <div class="row">          <div class="col-md-12">
+
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/" title="Apache TomEE">
+				    <span>
+
+				    
+                        <img 
+							src="img/apache_tomee-logo.svg"
+							onerror="this.src='img/apache_tomee-logo.jpg'"
+							height="50"
+							>
+                    
+
+                    </span>
+                </a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right main-nav">
+					<li><a href="docs.html">Documentation</a></li>
+					<li><a href="community/index.html">Community</a></li>
+					<li><a href="security/security.html">Security</a></li>
+					<li><a class="btn btn-accent accent-orange no-shadow" href="download.html">Downloads</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		   </div></div>
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+
+    <div id="main-block" class="container main-block">
+        <div class="row title">
+          <div class="col-md-12">
+            <div class='page-header'>
+              
+              <h1>Unit Testing Transactions</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div class="sect1">
+<h2 id="_basic_setup">Basic setup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Add the following interface and bean to your test sources (they could even be inner classes of a test case):</p>
+</div>
+<div class="sect2">
+<h3 id="_business_interface">Business interface</h3>
+<div class="literalblock">
+<div class="content">
+<pre>public interface Caller {
+    public &lt;V&gt; V call(Callable&lt;V&gt; callable) throws Exception;
+}</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_bean_implementations">Bean Implementation(s)</h3>
+<div class="literalblock">
+<div class="content">
+<pre>import java.util.concurrent.Callable;
+
+@Stateless
+@TransactionAttribute(REQUIRES_NEW)
+public class TransactionBean implements Caller {
+    public &lt;V&gt; V call(Callable&lt;V&gt; callable) throws Exception {
+	return callable.call();
+    }
+}</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_have_them_discovered">Have them discovered</h3>
+<div class="paragraph">
+<p>In src/test/resources/ (or related) create an META-INF/ejb-jar.xml containing the text "<ejb-jar></ejb-jar>"</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_what_we_accomplished">What we accomplished</h3>
+<div class="paragraph">
+<p>Essentially what we&#8217;ve done is added an ejb that will be picked up as part of your test code and deployed.
+You can then look it up and use it to execute test code with any particular transaction or security constraints that you want.
+The above bean specifies REQUIRES_NEW;
+functionally the same as REQUIRED as the test case itself won&#8217;t have a transaction, but a little cleaner and more explicit.</p>
+</div>
+<div class="paragraph">
+<p>You could also annotate the bean with @RunAs("manager") for example and test that your security restrictions are how you like them.
+You can have as many of these test beans in your test code as you like, each with it&#8217;s own transaction and security constraints allowing you to write some incredibly thorough tests.</p>
+</div>
+<div class="paragraph">
+<p>You do not need to use java.util.concurrent.Callable, any similar interface of your creation could work just as well.
+You may want something with return type void, for example, to eliminate useless 'return null' statements.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_usage">Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are a number of style choices for using the above bean, specifically around the creation of the Callable object you pass in, and it all really depends on what looks nice to you.</p>
+</div>
+<div class="paragraph">
+<p>In the examples below, the Movies bean being tested is simply a thin layer around JPA that allows us to use enforce various transaction semantics.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>import javax.ejb.Stateful;
+import javax.ejb.TransactionAttribute;
+import static javax.ejb.TransactionAttributeType.MANDATORY;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
+import javax.persistence.Query;
+import java.util.List;
+
+@Stateful(name == "Movies")
+@TransactionAttribute(MANDATORY)
+public class MoviesImpl implements Movies {
+
+    @PersistenceContext(unitName == "movie-unit", type == PersistenceContextType.TRANSACTION)
+    private EntityManager entityManager;
+
+    public void addMovie(Movie movie) throws Exception {
+	entityManager.persist(movie);
+    }
+
+    public void deleteMovie(Movie movie) throws Exception {
+	entityManager.remove(movie);
+    }
+
+    public List&lt;Movie&gt; getMovies() throws Exception {
+	Query query == entityManager.createQuery("SELECT m from Movie asm");
+    return query.getResultList();
+    }
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Test code below.</p>
+</div>
+<div class="sect2">
+<h3 id="_pure_inlined">Pure inlined</h3>
+<div class="paragraph">
+<p>The Callable can be created right in the test method itself.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public class MoviesTest extends TestCase {
+    private Context context;
+
+    protected void setUp() throws Exception {
+	// initialize jndi context as usual
+    }
+
+    public void test() throws Exception {
+	Caller transactionBean == (Caller)
+    context.lookup("TransactionBeanLocal");
+
+	transactionBean.call(new Callable() {
+	    public Object call() throws Exception {
+		Movies movies == (Movies) context.lookup("MoviesLocal");
+
+		movies.addMovie(new Movie("Quentin Tarantino", "Reservoir Dogs", 1992));
+		movies.addMovie(new Movie("Joel Coen", "Fargo", 1996));
+		movies.addMovie(new Movie("Joel Coen", "The Big Lebowski",1998));
+
+		List&lt;Movie&gt; list == movies.getMovies();
+		assertEquals("List.size()", 3, list.size());
+
+		for (Movie movie : list) {
+		    movies.deleteMovie(movie);
+		}
+
+		assertEquals("Movies.getMovies()", 0,movies.getMovies().size());
+
+		return null;
+	    }
+	});
+    }
+}</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_same_test_code_different_transaction_scenarios">Same test code, different transaction scenarios</h3>
+<div class="paragraph">
+<p>Maybe you&#8217;d like to test how things behave with and without a transaction to guarantee everyone is doing the right thing in all situations.
+Negative testing is often a very good way to stomp out dangerous bugs.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public class MoviesTest extends TestCase {
+    private Context context;
+
+    protected void setUp() throws Exception {
+	// initialize jndi context as usual
+    }
+
+    private void doWork() throws Exception {
+	      Movies movies == (Movies) context.lookup("MoviesLocal");
+
+	      movies.addMovie(new Movie("Quentin Tarantino", "Reservoir Dogs",1992));
+          movies.addMovie(new Movie("Joel Coen", "Fargo", 1996));
+	      movies.addMovie(new Movie("Joel Coen", "The Big Lebowski", 1998));
+
+	      List&lt;Movie&gt; list == movies.getMovies();
+	      assertEquals("List.size()", 3, list.size());
+
+	      for (Movie movie : list) {
+	          movies.deleteMovie(movie);
+	      }
+
+	      assertEquals("Movies.getMovies()", 0, movies.getMovies().size());
+    }
+
+    public void testWithTransaction() throws Exception {
+	      Caller transactionBean == (Caller)context.lookup("TransactionBeanLocal");
+
+	      transactionBean.call(new Callable(){
+	            public Object call() throws Exception {
+		          doWork();
+		          return null;
+	            }
+	      });
+    }
+
+    public void testWithoutTransaction() throws Exception {
+	      try {
+	            doWork();
+	            fail("The Movies bean should be using TransactionAttributeType.MANDATORY");
+	      } catch (javax.transaction.TransactionRequiredException e) {
+	            // good, our Movies bean is using TransactionAttributeType.MANDATORY as we want
+	      }
+    }
+}</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+            </div>
+            
+        </div>
+    </div>
+<div style="margin-bottom: 30px;"></div>
+<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 text-center-mobile">
+					<h3 class="white">Be simple.  Be certified. Be Tomcat.</h3>
+					<h5 class="light regular light-white">"A good application in a good server"</h5>
+					<ul class="social-footer">
+						<li><a href="https://www.facebook.com/ApacheTomEE/"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="https://twitter.com/apachetomee"><i class="fa fa-twitter"></i></a></li>
+					</ul>
+					<h5 class="light regular light-white">
+						<a href="privacy-policy.html" class="white">Privacy Policy</a>
+					</h5>
+				</div>
+				<div class="col-sm-6 text-center-mobile">
+					<div class="row opening-hours">
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="latest/docs/" class="white">Documentation</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="latest/docs/admin/configuration/index.html" class="regular light-white">How to configure</a></li>
+								<li><a href="latest/docs/admin/file-layout.html" class="regular light-white">Dir. Structure</a></li>
+								<li><a href="latest/docs/developer/testing/index.html" class="regular light-white">Testing</a></li>
+								<li><a href="latest/docs/admin/cluster/index.html" class="regular light-white">Clustering</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="latest/examples/" class="white">Examples</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="latest/examples/simple-cdi-interceptor.html" class="regular light-white">CDI Interceptor</a></li>
+								<li><a href="latest/examples/rest-cdi.html" class="regular light-white">REST with CDI</a></li>
+								<li><a href="latest/examples/ejb-examples.html" class="regular light-white">EJB</a></li>
+								<li><a href="latest/examples/jsf-managedBean-and-ejb.html" class="regular light-white">JSF</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="community/index.html" class="white">Community</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="community/contributors.html" class="regular light-white">Contributors</a></li>
+								<li><a href="community/social.html" class="regular light-white">Social</a></li>
+								<li><a href="community/sources.html" class="regular light-white">Sources</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="security/index.html" class="white">Security</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="https://apache.org/security" target="_blank" class="regular light-white">Apache Security</a></li>
+								<li><a href="https://apache.org/security/projects.html" target="_blank" class="regular light-white">Security Projects</a></li>
+								<li><a href="https://cve.mitre.org" target="_blank" class="regular light-white">CVE</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row bottom-footer text-center-mobile">
+				<div class="col-sm-12 light-white">
+					<p>Copyright &copy; 1999-2022 The Apache Software Foundation, Licensed under the Apache License, Version 2.0. Apache TomEE, TomEE, Apache, the Apache feather logo, and the Apache TomEE project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Holder for mobile navigation -->
+	<div class="mobile-nav">
+        <ul>
+          <li><a hef="latest/docs/admin/index.html">Administrators</a>
+          <li><a hef="latest/docs/developer/index.html">Developers</a>
+          <li><a hef="latest/docs/advanced/index.html">Advanced</a>
+          <li><a hef="community/index.html">Community</a>
+        </ul>
+		<a href="#" class="close-link"><i class="arrow_up"></i></a>
+	</div>
+	<!-- Scripts -->
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/typewriter.js"></script>
+	<script src="js/jquery.onepagenav.js"></script>
+	<script src="js/tree.jquery.js"></script>
+	<script src="js/highlight.pack.js"></script>
+    <script src="js/main.js"></script>
+		</body>
+
+</html>
+

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Apache TomEE</title>
+	<meta name="description"
+		  content="Apache TomEE is a lightweight, yet powerful, JavaEE Application server with feature rich tooling." />
+	<meta name="keywords" content="tomee,asf,apache,javaee,jee,shade,embedded,test,junit,applicationcomposer,maven,arquillian" />
+	<meta name="author" content="Luka Cvetinovic for Codrops" />
+	<link rel="icon" href="favicon.ico">
+	<link rel="icon"  type="image/png" href="favicon.png">
+	<meta name="msapplication-TileColor" content="#80287a">
+	<meta name="theme-color" content="#80287a">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/owl.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.1.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/eleganticons/et-icons.css">
+	<link rel="stylesheet" type="text/css" href="css/jqtree.css">
+	<link rel="stylesheet" type="text/css" href="css/idea.css">
+	<link rel="stylesheet" type="text/css" href="css/cardio.css">
+
+	<script type="text/javascript">
+		<!-- Matomo -->
+		var _paq = window._paq = window._paq || [];
+		/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+		/* We explicitly disable cookie tracking to avoid privacy issues */
+		_paq.push(['disableCookies']);
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function () {
+			var u = "//matomo.privacy.apache.org/";
+			_paq.push(['setTrackerUrl', u + 'matomo.php']);
+			_paq.push(['setSiteId', '5']);
+			var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+			g.async = true;
+			g.src = u + 'matomo.js';
+			s.parentNode.insertBefore(g, s);
+		})();
+		<!-- End Matomo Code -->
+    </script>
+</head>
+
+<body>
+    <div class="preloader">
+		<img src="img/loader.gif" alt="Preloader image">
+	</div>
+	    <nav class="navbar">
+		<div class="container">
+		  <div class="row">          <div class="col-md-12">
+
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/" title="Apache TomEE">
+				    <span>
+
+				    
+                        <img 
+							src="img/apache_tomee-logo.svg"
+							onerror="this.src='img/apache_tomee-logo.jpg'"
+							height="50"
+							>
+                    
+
+                    </span>
+                </a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right main-nav">
+					<li><a href="docs.html">Documentation</a></li>
+					<li><a href="community/index.html">Community</a></li>
+					<li><a href="security/security.html">Security</a></li>
+					<li><a class="btn btn-accent accent-orange no-shadow" href="download.html">Downloads</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		   </div></div>
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+
+    <div id="main-block" class="container main-block">
+        <div class="row title">
+          <div class="col-md-12">
+            <div class='page-header'>
+              
+              <h1>Contributing</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Contributing to the project is a great way to support the community.
+Some great links for getting involved</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="dev/source-code.html">Source Code</a></p>
+</li>
+<li>
+<p><a href="dev/contribution-tips.html">Contribution Tips</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The next (broken) link on the current site points to an apparently generated list of pages in dev.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="dev/index.html">Developer Documentation</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_contributing_doesnt_always_mean_code">Contributing doesn&#8217;t always mean code.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you love the project and want to see it grow, follow it on Facebook and Twitter.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://twitter.com/ApacheTomEE" class="bare">http://twitter.com/ApacheTomEE</a></p>
+</li>
+<li>
+<p><a href="http://facebook.com/ApacheTomEE" class="bare">http://facebook.com/ApacheTomEE</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The more people we reach the more the project grows.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Become an active retweeter + <a onclick="javascript:twshare()" class="tw-share sprite" title="share on Twitter">share <span class="tw"></a></span></p>
+</li>
+<li>
+<p>Share pages you like on Facebook + <a onclick="javascript:fbshare()" class="fb-share sprite" title="share on Facebook">share <span class="fb"></a></span></p>
+</li>
+<li>
+<p>Share pages you like on Pinterest + <a onclick="javascript:pinshare()" class="pin-share sprite" title="Share on Pinterest">share <span class="pin"></a></span></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Doing these things as often as possible are simple and powerful ways to help.
+Do your part and watch the project grow grow grow!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_edit_this_site">Edit This Site</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Top right, next to the Twitter symbol, there is an edit symbol <a href="#edit">contribute</a>.
+Most of the pages on this site can be edited by you.
+If you find a spelling mistake, or just want to improve the documentation then please do!</p>
+</div>
+<div class="paragraph">
+<p>If you want to edit the <a href="{examples-vc}::index.html">Examples Documentation</a> then check-out the <a href="dev/source-code.html">Source Code</a> and edit or create the README.md in the example directory you want to improve.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_committers">Committers</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:adc@apache.org">Alan Cabrera</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer, PMC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~adc">adc</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?adc">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:ammulder@apache.org">Aaron Mulder</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~ammulder">ammulder</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?ammulder">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:andygumbrecht@apache.org">Andrew Gumbrecht</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~andygumbrecht">andygumbrecht</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?andygumbrecht">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:dain@apache.org">Dain Sundstrom</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer, PMC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~dain">dain</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?dain">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:dblevins@apache.org">David Blevins</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Founder, Chair</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~dblevins">dblevins</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?dblevins">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:djencks@apache.org">David Jencks</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer, PMC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~djencks">djencks</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?djencks">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:dsh@apache.org">Daniel Stefan Haischt</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~dsh">dsh</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?dsh">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:gawor@apache.org">Jarek Gawor</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~gawor">gawor</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?gawor">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:gdamour@apache.org">Gianny Damour</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~gdamour">gdamour</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?gdamour">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:genspring@apache.org">Lin Quan Jiang</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~genspring">genspring</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?genspring">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:hogstrom@apache.org">Matt Richard Hogstrom</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~hogstrom">hogstrom</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?hogstrom">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:jgallimore@apache.org">Jonathan Gallimore</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer, PMC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~jgallimore">jgallimore</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?jgallimore">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:jgenender@apache.org">Jeff Genender</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~jgenender">jgenender</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?jgenender">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:jlaskowski@apache.org">Jacek Laskowski</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer, PMC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~jlaskowski">jlaskowski</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?jlaskowski">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:jlmonteiro@apache.org">Jean-Louis Monteiro</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer, PMC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~jlmonteiro">jlmonteiro</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?jlmonteiro">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:jvanzyl@apache.org">Jason van Zyl</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~jvanzyl">jvanzyl</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?jvanzyl">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:jwhitlock@apache.org">Jeremy Whitlock</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~jwhitlock">jwhitlock</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?jwhitlock">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:kevan@apache.org">Kevan Lee Miller</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer, PMC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~kevan">kevan</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?kevan">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:kmalhi@apache.org">Karan Singh Malhi</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~kmalhi">kmalhi</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?kmalhi">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:lajos@apache.org">Lajos Moczar</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~lajos">lajos</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?lajos">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:manugeorge@apache.org">Manu George</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~manugeorge">manugeorge</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?manugeorge">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:struberg@apache.org">Mark Struberg</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer, PMC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~struberg">struberg</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?struberg">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:mnour@apache.org">Mohammad Nour El-Din</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~mnour">mnour</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?mnour">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:rickmcguire@apache.org">Richard McGuire</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~rickmcguire">rickmcguire</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?rickmcguire">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:rmannibucau@apache.org">Romain Manni-Bucau</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~rmannibucau">rmannibucau</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?rmannibucau">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:tveronezi@apache.org">Thiago Veronezi</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~tveronezi">tveronezi</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?tveronezi">map</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:xuhaihong@apache.org">Haihong Xu</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Committer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/~xuhaihong">xuhaihong</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://people.apache.org/map.html?xuhaihong">map</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+            </div>
+            
+        </div>
+    </div>
+<div style="margin-bottom: 30px;"></div>
+<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 text-center-mobile">
+					<h3 class="white">Be simple.  Be certified. Be Tomcat.</h3>
+					<h5 class="light regular light-white">"A good application in a good server"</h5>
+					<ul class="social-footer">
+						<li><a href="https://www.facebook.com/ApacheTomEE/"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="https://twitter.com/apachetomee"><i class="fa fa-twitter"></i></a></li>
+					</ul>
+					<h5 class="light regular light-white">
+						<a href="privacy-policy.html" class="white">Privacy Policy</a>
+					</h5>
+				</div>
+				<div class="col-sm-6 text-center-mobile">
+					<div class="row opening-hours">
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="latest/docs/" class="white">Documentation</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="latest/docs/admin/configuration/index.html" class="regular light-white">How to configure</a></li>
+								<li><a href="latest/docs/admin/file-layout.html" class="regular light-white">Dir. Structure</a></li>
+								<li><a href="latest/docs/developer/testing/index.html" class="regular light-white">Testing</a></li>
+								<li><a href="latest/docs/admin/cluster/index.html" class="regular light-white">Clustering</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="latest/examples/" class="white">Examples</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="latest/examples/simple-cdi-interceptor.html" class="regular light-white">CDI Interceptor</a></li>
+								<li><a href="latest/examples/rest-cdi.html" class="regular light-white">REST with CDI</a></li>
+								<li><a href="latest/examples/ejb-examples.html" class="regular light-white">EJB</a></li>
+								<li><a href="latest/examples/jsf-managedBean-and-ejb.html" class="regular light-white">JSF</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="community/index.html" class="white">Community</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="community/contributors.html" class="regular light-white">Contributors</a></li>
+								<li><a href="community/social.html" class="regular light-white">Social</a></li>
+								<li><a href="community/sources.html" class="regular light-white">Sources</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="security/index.html" class="white">Security</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="https://apache.org/security" target="_blank" class="regular light-white">Apache Security</a></li>
+								<li><a href="https://apache.org/security/projects.html" target="_blank" class="regular light-white">Security Projects</a></li>
+								<li><a href="https://cve.mitre.org" target="_blank" class="regular light-white">CVE</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row bottom-footer text-center-mobile">
+				<div class="col-sm-12 light-white">
+					<p>Copyright &copy; 1999-2022 The Apache Software Foundation, Licensed under the Apache License, Version 2.0. Apache TomEE, TomEE, Apache, the Apache feather logo, and the Apache TomEE project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Holder for mobile navigation -->
+	<div class="mobile-nav">
+        <ul>
+          <li><a hef="latest/docs/admin/index.html">Administrators</a>
+          <li><a hef="latest/docs/developer/index.html">Developers</a>
+          <li><a hef="latest/docs/advanced/index.html">Advanced</a>
+          <li><a hef="community/index.html">Community</a>
+        </ul>
+		<a href="#" class="close-link"><i class="arrow_up"></i></a>
+	</div>
+	<!-- Scripts -->
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/typewriter.js"></script>
+	<script src="js/jquery.onepagenav.js"></script>
+	<script src="js/tree.jquery.js"></script>
+	<script src="js/highlight.pack.js"></script>
+    <script src="js/main.js"></script>
+		</body>
+
+</html>
+

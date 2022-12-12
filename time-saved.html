@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Apache TomEE</title>
+	<meta name="description"
+		  content="Apache TomEE is a lightweight, yet powerful, JavaEE Application server with feature rich tooling." />
+	<meta name="keywords" content="tomee,asf,apache,javaee,jee,shade,embedded,test,junit,applicationcomposer,maven,arquillian" />
+	<meta name="author" content="Luka Cvetinovic for Codrops" />
+	<link rel="icon" href="favicon.ico">
+	<link rel="icon"  type="image/png" href="favicon.png">
+	<meta name="msapplication-TileColor" content="#80287a">
+	<meta name="theme-color" content="#80287a">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/owl.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.1.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/eleganticons/et-icons.css">
+	<link rel="stylesheet" type="text/css" href="css/jqtree.css">
+	<link rel="stylesheet" type="text/css" href="css/idea.css">
+	<link rel="stylesheet" type="text/css" href="css/cardio.css">
+
+	<script type="text/javascript">
+		<!-- Matomo -->
+		var _paq = window._paq = window._paq || [];
+		/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+		/* We explicitly disable cookie tracking to avoid privacy issues */
+		_paq.push(['disableCookies']);
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function () {
+			var u = "//matomo.privacy.apache.org/";
+			_paq.push(['setTrackerUrl', u + 'matomo.php']);
+			_paq.push(['setSiteId', '5']);
+			var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+			g.async = true;
+			g.src = u + 'matomo.js';
+			s.parentNode.insertBefore(g, s);
+		})();
+		<!-- End Matomo Code -->
+    </script>
+</head>
+
+<body>
+    <div class="preloader">
+		<img src="img/loader.gif" alt="Preloader image">
+	</div>
+	    <nav class="navbar">
+		<div class="container">
+		  <div class="row">          <div class="col-md-12">
+
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/" title="Apache TomEE">
+				    <span>
+
+				    
+                        <img 
+							src="img/apache_tomee-logo.svg"
+							onerror="this.src='img/apache_tomee-logo.jpg'"
+							height="50"
+							>
+                    
+
+                    </span>
+                </a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right main-nav">
+					<li><a href="docs.html">Documentation</a></li>
+					<li><a href="community/index.html">Community</a></li>
+					<li><a href="security/security.html">Security</a></li>
+					<li><a class="btn btn-accent accent-orange no-shadow" href="download.html">Downloads</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		   </div></div>
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+
+    <div id="main-block" class="container main-block">
+        <div class="row title">
+          <div class="col-md-12">
+            <div class='page-header'>
+              
+              <h1>Time Saved</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div class="paragraph">
+<p>Ever wonder exactly how much time you might be saving being able to quickly
+compile and test code with OpenEJB?  Well, find out!</p>
+</div>
+<div class="paragraph">
+<p>Deploy times in Java EE in general are partially based on the platform and
+partially on the size of the application itself.  With that in mind, we&#8217;ve
+put together this little calculator so you can see what OpenEJB is doing
+for you!</p>
+</div>
+<a name="TimeSaved-Calculator"></a>
+# Calculator
+<script type="text/javascript" src="http://prototypejs.org/assets/2010/4/1/prototype.js"></script>
+<script>
+
+  function calculate() {
+    var developers = $("devs").getValue();
+    var cycles = $("cycles").getValue();
+    var weeks = $("weeks").getValue();
+
+    var individual_deployTime_openejb = $("time_openejb").getValue();
+    var individual_deployTime_vendor = $("time_vendor").getValue();
+    var individual_deployTime_savings = individual_deployTime_vendor - individual_deployTime_openejb;
+
+    var individual_deployTimePerHour_openejb = cycles * individual_deployTime_openejb / 8;
+    var individual_deployTimePerHour_vendor =  cycles * individual_deployTime_vendor / 8;
+    var individual_deployTimePerHour_savings = individual_deployTimePerHour_vendor - individual_deployTimePerHour_openejb;
+
+    var individual_deployTimePerWeek_openejb = individual_deployTimePerHour_openejb * 40;
+    var individual_deployTimePerWeek_vendor = individual_deployTimePerHour_vendor * 40;
+    var individual_deployTimePerWeek_savings = individual_deployTimePerWeek_vendor - individual_deployTimePerWeek_openejb;
+
+    var individual_deployTimePerMonth_openejb = individual_deployTimePerWeek_openejb * 4.33;
+    var individual_deployTimePerMonth_vendor = individual_deployTimePerWeek_vendor * 4.33;
+    var individual_deployTimePerMonth_savings = individual_deployTimePerMonth_vendor - individual_deployTimePerMonth_openejb;
+
+    var team_deployTime_openejb = developers * individual_deployTime_openejb;
+    var team_deployTime_vendor = developers * individual_deployTime_vendor;
+    var team_deployTime_savings = developers * individual_deployTime_savings;
+
+    var team_deployTimePerHour_openejb = developers * individual_deployTimePerHour_openejb;
+    var team_deployTimePerHour_vendor = developers * individual_deployTimePerHour_vendor;
+    var team_deployTimePerHour_savings = developers * individual_deployTimePerHour_savings;
+
+    var team_deployTimePerWeek_openejb = developers * individual_deployTimePerWeek_openejb;
+    var team_deployTimePerWeek_vendor = developers * individual_deployTimePerWeek_vendor;
+    var team_deployTimePerWeek_savings = developers * individual_deployTimePerWeek_savings;
+
+    var team_deployTimePerMonth_openejb = developers * individual_deployTimePerMonth_openejb;
+    var team_deployTimePerMonth_vendor = developers * individual_deployTimePerMonth_vendor;
+    var team_deployTimePerMonth_savings = developers * individual_deployTimePerMonth_savings;
+
+    var total_savings = team_deployTimePerWeek_savings * weeks;
+
+    $("individual.deployTime.openejb").innerHTML = format(individual_deployTime_openejb);
+    $("individual.deployTime.vendor").innerHTML = format(individual_deployTime_vendor);
+    $("individual.deployTime.savings").innerHTML = format(individual_deployTime_savings);
+
+    $("individual.deployTimePerHour.openejb").innerHTML = format(individual_deployTimePerHour_openejb);
+    $("individual.deployTimePerHour.vendor").innerHTML = format(individual_deployTimePerHour_vendor);
+    $("individual.deployTimePerHour.savings").innerHTML = format(individual_deployTimePerHour_savings);
+
+    $("individual.deployTimePerWeek.openejb").innerHTML = format(individual_deployTimePerWeek_openejb);
+    $("individual.deployTimePerWeek.vendor").innerHTML = format(individual_deployTimePerWeek_vendor);
+    $("individual.deployTimePerWeek.savings").innerHTML = format(individual_deployTimePerWeek_savings);
+
+    $("individual.deployTimePerMonth.openejb").innerHTML = format(individual_deployTimePerMonth_openejb);
+    $("individual.deployTimePerMonth.vendor").innerHTML = format(individual_deployTimePerMonth_vendor);
+    $("individual.deployTimePerMonth.savings").innerHTML = format(individual_deployTimePerMonth_savings);
+
+    $("team.deployTime.openejb").innerHTML = format(team_deployTime_openejb);
+    $("team.deployTime.vendor").innerHTML = format(team_deployTime_vendor);
+    $("team.deployTime.savings").innerHTML = format(team_deployTime_savings);
+    $("team.deployTimePerHour.openejb").innerHTML = format(team_deployTimePerHour_openejb);
+    $("team.deployTimePerHour.vendor").innerHTML = format(team_deployTimePerHour_vendor);
+    $("team.deployTimePerHour.savings").innerHTML = format(team_deployTimePerHour_savings);
+    $("team.deployTimePerWeek.openejb").innerHTML = format(team_deployTimePerWeek_openejb);
+    $("team.deployTimePerWeek.vendor").innerHTML = format(team_deployTimePerWeek_vendor);
+    $("team.deployTimePerWeek.savings").innerHTML = format(team_deployTimePerWeek_savings);
+    $("team.deployTimePerMonth.openejb").innerHTML = format(team_deployTimePerMonth_openejb);
+    $("team.deployTimePerMonth.vendor").innerHTML = format(team_deployTimePerMonth_vendor);
+    $("team.deployTimePerMonth.savings").innerHTML = format(team_deployTimePerMonth_savings);
+
+    $("totalSavings").innerHTML = longFormat(total_savings);
+
+  }
+
+  function format(secs) {
+    var mins = Math.floor(secs / 60)
+    secs = secs % 60;
+    secs -= secs % 1;
+
+    var hrs = Math.floor(mins / 60)
+    mins = mins % 60
+
+    if (secs < 10) secs = "0" + secs;
+    if (mins < 10) mins = "0" + mins;
+    if (hrs < 10) hrs = "0" + hrs;
+
+    return hrs + ":" + mins + ":" + secs + "";
+  }
+
+  function longFormat(secs) {
+    var mins = Math.floor(secs / 60)
+    secs = secs % 60;
+    secs -= secs % 1;
+
+    var hrs = Math.floor(mins / 60)
+    mins = mins % 60
+
+    // eight hours per work day
+    var days = Math.floor(hrs / 8)
+    hrs = hrs % 8
+
+    // five days per work week
+    var weeks = Math.floor(days / 5)
+    days = days % 5
+
+    var str = "";
+    if (weeks > 0) str = weeks + " weeks, "
+    if (str.length > 0 || days > 0) str += days + " days, "
+    if (str.length > 0 || hrs > 0) str += hrs + " hours, "
+    if (str.length > 0 || mins > 0) str += mins + " minutes, "
+    if (secs > 0) str += secs + " seconds"
+
+    str = str.replace(/, $/, "");
+    str = str.replace(/^ */, "");
+
+    return str;
+  }
+</script>
+
+<table>
+  <col width=370>
+    <!--<col width=200>-->
+  <tr>
+    <td><strong>How many developers?</strong></td>
+    <td><input id="devs" type="text" value="0" size="5"/></td>
+  </tr>
+  <tr>
+    <td><strong>How many weeks?</strong>
+    </td>
+    <td><input id="weeks" type="text" value="0" size="5"/></td>
+  </tr>
+  <tr>
+    <td><strong>How many times do you compile/run per day?</strong></td>
+    <td><input id="cycles" type="text" value="0" size="5"/></td>
+  </tr>
+  <tr>
+    <td><strong>Time to start/deploy your app in OpenEJB?</strong></td>
+    <td><input id="time_openejb" value="0" type="text" size="5"/> <i>seconds</i></td>
+  </tr>
+  <tr>
+    <td><strong>Time to start/deploy your app in your other platform?</strong></td>
+    <td><input id="time_vendor" value="0" type="text" size="5"/> <i>seconds</i></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><input type="button" id="calculate" value="Calculate" onclick="calculate();"/></td>
+  </tr>
+</table>
+
+
+<h3>Individual Stats</h3>
+<table cellpadding="1" border="1" style='border-collapse:collapse'>
+  <col width=198>
+  <col width=90>
+  <col width=90>
+  <col width=90>
+  <tr>
+    <td></td>
+    <td align="center">OpenEJB</td>
+    <td align="center">Vendor</td>
+    <td align="center"><b>Savings</b></td>
+  </tr>
+  <tr>
+    <td>deployTime</td>
+    <td align="center" id="individual.deployTime.openejb"></td>
+    <td align="center" id="individual.deployTime.vendor"></td>
+    <td align="center" id="individual.deployTime.savings"></td>
+  </tr>
+  <tr>
+    <td>deployTimePerHour</td>
+    <td align="center" id="individual.deployTimePerHour.openejb"></td>
+    <td align="center" id="individual.deployTimePerHour.vendor"></td>
+    <td align="center" id="individual.deployTimePerHour.savings"></td>
+  </tr>
+  <tr>
+    <td>deployTimePerWeek</td>
+    <td align="center" id="individual.deployTimePerWeek.openejb"></td>
+    <td align="center" id="individual.deployTimePerWeek.vendor"></td>
+    <td align="center" id="individual.deployTimePerWeek.savings"></td>
+  </tr>
+  <tr>
+    <td>deployTimePerMonth</td>
+    <td align="center" id="individual.deployTimePerMonth.openejb"></td>
+    <td align="center" id="individual.deployTimePerMonth.vendor"></td>
+    <td align="center" id="individual.deployTimePerMonth.savings"></td>
+  </tr>
+</table>
+<p><i>Time in HH:MM:SS format</i></p>
+<h3>Team Stats</h3>
+<table border=1 cellpadding=2 cellspacing=2 style='border-collapse:
+ collapse;table-layout:fixed'>
+  <col width=198>
+  <col width=90>
+  <col width=90>
+  <col width=90>
+  <tr>
+    <td></td>
+    <td align="center">OpenEJB</td>
+    <td align="center">Vendor</td>
+    <td align="center"><b>Savings</b></td>
+  </tr>
+
+  <tr>
+    <td>deployTime</td>
+    <td align="center" id="team.deployTime.openejb"></td>
+    <td align="center" id="team.deployTime.vendor"></td>
+    <td align="center" id="team.deployTime.savings"></td>
+  </tr>
+  <tr>
+    <td>deployTimePerHour</td>
+    <td align="center" id="team.deployTimePerHour.openejb"></td>
+    <td align="center" id="team.deployTimePerHour.vendor"></td>
+    <td align="center" id="team.deployTimePerHour.savings"></td>
+  </tr>
+  <tr>
+    <td>deployTimePerWeek</td>
+    <td align="center" id="team.deployTimePerWeek.openejb"></td>
+    <td align="center" id="team.deployTimePerWeek.vendor"></td>
+    <td align="center" id="team.deployTimePerWeek.savings"></td>
+  </tr>
+  <tr>
+    <td>deployTimePerMonth</td>
+    <td align="center" id="team.deployTimePerMonth.openejb"></td>
+    <td align="center" id="team.deployTimePerMonth.vendor"></td>
+    <td align="center" id="team.deployTimePerMonth.savings"></td>
+  </tr>
+</table>
+
+<h3>Total Savings</h3>
+
+<p><span  id="totalSavings"></span></p>
+            </div>
+            
+        </div>
+    </div>
+<div style="margin-bottom: 30px;"></div>
+<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 text-center-mobile">
+					<h3 class="white">Be simple.  Be certified. Be Tomcat.</h3>
+					<h5 class="light regular light-white">"A good application in a good server"</h5>
+					<ul class="social-footer">
+						<li><a href="https://www.facebook.com/ApacheTomEE/"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="https://twitter.com/apachetomee"><i class="fa fa-twitter"></i></a></li>
+					</ul>
+					<h5 class="light regular light-white">
+						<a href="privacy-policy.html" class="white">Privacy Policy</a>
+					</h5>
+				</div>
+				<div class="col-sm-6 text-center-mobile">
+					<div class="row opening-hours">
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="latest/docs/" class="white">Documentation</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="latest/docs/admin/configuration/index.html" class="regular light-white">How to configure</a></li>
+								<li><a href="latest/docs/admin/file-layout.html" class="regular light-white">Dir. Structure</a></li>
+								<li><a href="latest/docs/developer/testing/index.html" class="regular light-white">Testing</a></li>
+								<li><a href="latest/docs/admin/cluster/index.html" class="regular light-white">Clustering</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="latest/examples/" class="white">Examples</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="latest/examples/simple-cdi-interceptor.html" class="regular light-white">CDI Interceptor</a></li>
+								<li><a href="latest/examples/rest-cdi.html" class="regular light-white">REST with CDI</a></li>
+								<li><a href="latest/examples/ejb-examples.html" class="regular light-white">EJB</a></li>
+								<li><a href="latest/examples/jsf-managedBean-and-ejb.html" class="regular light-white">JSF</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="community/index.html" class="white">Community</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="community/contributors.html" class="regular light-white">Contributors</a></li>
+								<li><a href="community/social.html" class="regular light-white">Social</a></li>
+								<li><a href="community/sources.html" class="regular light-white">Sources</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="security/index.html" class="white">Security</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="https://apache.org/security" target="_blank" class="regular light-white">Apache Security</a></li>
+								<li><a href="https://apache.org/security/projects.html" target="_blank" class="regular light-white">Security Projects</a></li>
+								<li><a href="https://cve.mitre.org" target="_blank" class="regular light-white">CVE</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row bottom-footer text-center-mobile">
+				<div class="col-sm-12 light-white">
+					<p>Copyright &copy; 1999-2022 The Apache Software Foundation, Licensed under the Apache License, Version 2.0. Apache TomEE, TomEE, Apache, the Apache feather logo, and the Apache TomEE project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Holder for mobile navigation -->
+	<div class="mobile-nav">
+        <ul>
+          <li><a hef="latest/docs/admin/index.html">Administrators</a>
+          <li><a hef="latest/docs/developer/index.html">Developers</a>
+          <li><a hef="latest/docs/advanced/index.html">Advanced</a>
+          <li><a hef="community/index.html">Community</a>
+        </ul>
+		<a href="#" class="close-link"><i class="arrow_up"></i></a>
+	</div>
+	<!-- Scripts -->
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/typewriter.js"></script>
+	<script src="js/jquery.onepagenav.js"></script>
+	<script src="js/tree.jquery.js"></script>
+	<script src="js/highlight.pack.js"></script>
+    <script src="js/main.js"></script>
+		</body>
+
+</html>
+

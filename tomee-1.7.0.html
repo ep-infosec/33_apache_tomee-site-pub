@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Apache TomEE</title>
+	<meta name="description"
+		  content="Apache TomEE is a lightweight, yet powerful, JavaEE Application server with feature rich tooling." />
+	<meta name="keywords" content="tomee,asf,apache,javaee,jee,shade,embedded,test,junit,applicationcomposer,maven,arquillian" />
+	<meta name="author" content="Luka Cvetinovic for Codrops" />
+	<link rel="icon" href="favicon.ico">
+	<link rel="icon"  type="image/png" href="favicon.png">
+	<meta name="msapplication-TileColor" content="#80287a">
+	<meta name="theme-color" content="#80287a">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/owl.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.1.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/eleganticons/et-icons.css">
+	<link rel="stylesheet" type="text/css" href="css/jqtree.css">
+	<link rel="stylesheet" type="text/css" href="css/idea.css">
+	<link rel="stylesheet" type="text/css" href="css/cardio.css">
+
+	<script type="text/javascript">
+		<!-- Matomo -->
+		var _paq = window._paq = window._paq || [];
+		/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+		/* We explicitly disable cookie tracking to avoid privacy issues */
+		_paq.push(['disableCookies']);
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function () {
+			var u = "//matomo.privacy.apache.org/";
+			_paq.push(['setTrackerUrl', u + 'matomo.php']);
+			_paq.push(['setSiteId', '5']);
+			var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+			g.async = true;
+			g.src = u + 'matomo.js';
+			s.parentNode.insertBefore(g, s);
+		})();
+		<!-- End Matomo Code -->
+    </script>
+</head>
+
+<body>
+    <div class="preloader">
+		<img src="img/loader.gif" alt="Preloader image">
+	</div>
+	    <nav class="navbar">
+		<div class="container">
+		  <div class="row">          <div class="col-md-12">
+
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/" title="Apache TomEE">
+				    <span>
+
+				    
+                        <img 
+							src="img/apache_tomee-logo.svg"
+							onerror="this.src='img/apache_tomee-logo.jpg'"
+							height="50"
+							>
+                    
+
+                    </span>
+                </a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right main-nav">
+					<li><a href="docs.html">Documentation</a></li>
+					<li><a href="community/index.html">Community</a></li>
+					<li><a href="security/security.html">Security</a></li>
+					<li><a class="btn btn-accent accent-orange no-shadow" href="download.html">Downloads</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		   </div></div>
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+
+    <div id="main-block" class="container main-block">
+        <div class="row title">
+          <div class="col-md-12">
+            <div class='page-header'>
+              
+              <h1>Apache TomEE 1.7.0 Released!</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div class="paragraph">
+<p>Great news for Summer!
+After many months of hard work and dedicated community commitment Apache TomEE is happy to finally announce the feature release of <a href="http://tomee.apache.org/downloads.html">Apache TomEE 1.7.0</a>, which is based on <a href="http://tomcat.apache.org/tomcat-7.0-doc/index.html">Apache Tomcat 7.0.55</a>.
+Please do not forget that nearly all of the work that goes into this purely open source project is community driven.
+Very special thanks go out to all that have dedicated their time and effort to make this release possible.
+Anyone active on the <a href="http://tomee.apache.org/support.html">mailing lists and/or IRC</a> will know that an extra special thanks for <a href="http://rmannibucau.wordpress.com">Romain Manni-Bucau</a> for his lightning fast support is well deserved.</p>
+</div>
+<div class="paragraph">
+<p>The 1.7.0 feature release is the final Java SE 6 / Java SE 8 compatible Oracle Java EE 6 Web Profile Certified branch.</p>
+</div>
+<div class="paragraph">
+<p>So what is new?</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>PLUME Profile (Mojarra and EclipseLink)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>One the most important new features has to be the new experimental PLUME profile, which is basically TomEE PLUS with <a href="https://javaserverfaces.java.net/">Mojarra</a> and <a href="http://www.eclipse.org/eclipselink/">EclipseLink</a> added support.
++ This makes the transition to TomEE from a Glassfish environment a lot less painful.
+So no more excuses, come and join us - We&#8217;re all yours!</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Java SE 8 Runtime Support</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A lot of work has been completed to ensure that Apache TomEE 1.7.x will run within an <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java SE 8 environment</a>, yet remain backwards compatible with Java SE 6.
+Several libraries used have been shaded and patched to achieve this goal and provide users with a stable platform for the transition to a new runtime.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Bug Fixes and Improvements</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In addition to PLUME and Java 8 support there have been a train, plane and truck load of tweaks, improvements and bug fixes to make this release one of the most stable and feature rich versions we have ever released.
+Just have a quick look at these lists to get an idea of how much has been achieved.
+Amazing!</p>
+</div>
+<div class="paragraph">
+<p>A total of <a href="https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&amp;mode=hide&amp;jqlQuery=project+%3D+TOMEE+AND+fixVersion+%3D+1.7.0">154 TomEE</a> issues have been addressed.
++ A total of <a href="https://issues.apache.org/jira/secure/IssueNavigator.jspa?reset=true&amp;mode=hide&amp;jqlQuery=project+%3D+OPENEJB+AND+fixVersion+%3D+4.7.0">237 OpenEJB</a> issues have been addressed (OK, to be fair, some of these were legacy JIRA&#8217;s stuck in the cobweb)</p>
+</div>
+<div class="paragraph">
+<p>The Apache TomEE 1.7.0 release files can be downloaded from here:</p>
+</div>
+<div class="paragraph">
+<p><a href="http://tomee.apache.org/downloads.html" class="bare">http://tomee.apache.org/downloads.html</a></p>
+</div>
+<div class="paragraph">
+<p>Or just update your existing Maven JavaEE-API, OpenEJB and or TomEE entries to point to the latest versions:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;dependency&gt;
+	&lt;groupId&gt;org.apache.openejb&lt;/groupId&gt;
+	&lt;artifactId&gt;javaee-api&lt;/artifactId&gt;
+	&lt;version&gt;6.0-6&lt;/version&gt;
+	&lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+	&lt;groupId&gt;org.apache.openejb&lt;/groupId&gt;
+	&lt;artifactId&gt;openejb-core&lt;/artifactId&gt;
+	&lt;version&gt;4.7.0&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+	&lt;groupId&gt;org.apache.openejb&lt;/groupId&gt;
+	&lt;artifactId&gt;tomee&lt;/artifactId&gt;
+	&lt;version&gt;1.7.0&lt;/version&gt;
+&lt;/dependency&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A complete <a href="tomee-1.7.0-release-notes.html">Changelog</a> can be viewed here:</p>
+</div>
+<div class="paragraph">
+<p><a href="tomee-1.7.0-release-notes.html">tomee-1.7.0-release-notes.html</a></p>
+</div>
+<div class="paragraph">
+<p>So please feel free to jump in feet first and <a href="http://tomee.apache.org/documentation.html">get started with TomEE</a>.
+You will nearly always find someone to help you on one of our <a href="http://tomee.apache.org/support.html">support channels</a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Java EE7 and Beyond</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>From this point on the TomEE community will be focusing most of it&#8217;s efforts on TomEE 2.0.x, which will be the first TomEE Java EE 7 driven version running on Apache Tomcat 8.x.
+It is more than likely that support for Java SE 6 will be dropped so that Java SE 7 features can finally be leveraged during the development process.
+We will of course continue to maintain the 1.7.x branch for the foreseeable future.</p>
+</div>
+            </div>
+            
+        </div>
+    </div>
+<div style="margin-bottom: 30px;"></div>
+<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 text-center-mobile">
+					<h3 class="white">Be simple.  Be certified. Be Tomcat.</h3>
+					<h5 class="light regular light-white">"A good application in a good server"</h5>
+					<ul class="social-footer">
+						<li><a href="https://www.facebook.com/ApacheTomEE/"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="https://twitter.com/apachetomee"><i class="fa fa-twitter"></i></a></li>
+					</ul>
+					<h5 class="light regular light-white">
+						<a href="privacy-policy.html" class="white">Privacy Policy</a>
+					</h5>
+				</div>
+				<div class="col-sm-6 text-center-mobile">
+					<div class="row opening-hours">
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="latest/docs/" class="white">Documentation</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="latest/docs/admin/configuration/index.html" class="regular light-white">How to configure</a></li>
+								<li><a href="latest/docs/admin/file-layout.html" class="regular light-white">Dir. Structure</a></li>
+								<li><a href="latest/docs/developer/testing/index.html" class="regular light-white">Testing</a></li>
+								<li><a href="latest/docs/admin/cluster/index.html" class="regular light-white">Clustering</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="latest/examples/" class="white">Examples</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="latest/examples/simple-cdi-interceptor.html" class="regular light-white">CDI Interceptor</a></li>
+								<li><a href="latest/examples/rest-cdi.html" class="regular light-white">REST with CDI</a></li>
+								<li><a href="latest/examples/ejb-examples.html" class="regular light-white">EJB</a></li>
+								<li><a href="latest/examples/jsf-managedBean-and-ejb.html" class="regular light-white">JSF</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="community/index.html" class="white">Community</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="community/contributors.html" class="regular light-white">Contributors</a></li>
+								<li><a href="community/social.html" class="regular light-white">Social</a></li>
+								<li><a href="community/sources.html" class="regular light-white">Sources</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="security/index.html" class="white">Security</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="https://apache.org/security" target="_blank" class="regular light-white">Apache Security</a></li>
+								<li><a href="https://apache.org/security/projects.html" target="_blank" class="regular light-white">Security Projects</a></li>
+								<li><a href="https://cve.mitre.org" target="_blank" class="regular light-white">CVE</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row bottom-footer text-center-mobile">
+				<div class="col-sm-12 light-white">
+					<p>Copyright &copy; 1999-2022 The Apache Software Foundation, Licensed under the Apache License, Version 2.0. Apache TomEE, TomEE, Apache, the Apache feather logo, and the Apache TomEE project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Holder for mobile navigation -->
+	<div class="mobile-nav">
+        <ul>
+          <li><a hef="latest/docs/admin/index.html">Administrators</a>
+          <li><a hef="latest/docs/developer/index.html">Developers</a>
+          <li><a hef="latest/docs/advanced/index.html">Advanced</a>
+          <li><a hef="community/index.html">Community</a>
+        </ul>
+		<a href="#" class="close-link"><i class="arrow_up"></i></a>
+	</div>
+	<!-- Scripts -->
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/typewriter.js"></script>
+	<script src="js/jquery.onepagenav.js"></script>
+	<script src="js/tree.jquery.js"></script>
+	<script src="js/highlight.pack.js"></script>
+    <script src="js/main.js"></script>
+		</body>
+
+</html>
+

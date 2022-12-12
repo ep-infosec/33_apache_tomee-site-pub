@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Apache TomEE</title>
+	<meta name="description"
+		  content="Apache TomEE is a lightweight, yet powerful, JavaEE Application server with feature rich tooling." />
+	<meta name="keywords" content="tomee,asf,apache,javaee,jee,shade,embedded,test,junit,applicationcomposer,maven,arquillian" />
+	<meta name="author" content="Luka Cvetinovic for Codrops" />
+	<link rel="icon" href="favicon.ico">
+	<link rel="icon"  type="image/png" href="favicon.png">
+	<meta name="msapplication-TileColor" content="#80287a">
+	<meta name="theme-color" content="#80287a">
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/owl.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.1.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="fonts/eleganticons/et-icons.css">
+	<link rel="stylesheet" type="text/css" href="css/jqtree.css">
+	<link rel="stylesheet" type="text/css" href="css/idea.css">
+	<link rel="stylesheet" type="text/css" href="css/cardio.css">
+
+	<script type="text/javascript">
+		<!-- Matomo -->
+		var _paq = window._paq = window._paq || [];
+		/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+		/* We explicitly disable cookie tracking to avoid privacy issues */
+		_paq.push(['disableCookies']);
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function () {
+			var u = "//matomo.privacy.apache.org/";
+			_paq.push(['setTrackerUrl', u + 'matomo.php']);
+			_paq.push(['setSiteId', '5']);
+			var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+			g.async = true;
+			g.src = u + 'matomo.js';
+			s.parentNode.insertBefore(g, s);
+		})();
+		<!-- End Matomo Code -->
+    </script>
+</head>
+
+<body>
+    <div class="preloader">
+		<img src="img/loader.gif" alt="Preloader image">
+	</div>
+	    <nav class="navbar">
+		<div class="container">
+		  <div class="row">          <div class="col-md-12">
+
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/" title="Apache TomEE">
+				    <span>
+
+				    
+                        <img 
+							src="img/apache_tomee-logo.svg"
+							onerror="this.src='img/apache_tomee-logo.jpg'"
+							height="50"
+							>
+                    
+
+                    </span>
+                </a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right main-nav">
+					<li><a href="docs.html">Documentation</a></li>
+					<li><a href="community/index.html">Community</a></li>
+					<li><a href="security/security.html">Security</a></li>
+					<li><a class="btn btn-accent accent-orange no-shadow" href="download.html">Downloads</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		   </div></div>
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+
+    <div id="main-block" class="container main-block">
+        <div class="row title">
+          <div class="col-md-12">
+            <div class='page-header'>
+              
+              <h1>Tomcat Detailed Instructions</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div class="sect1">
+<h2 id="_detailed_installation_instructions">Detailed Installation Instructions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These instructions assume you have a standard Tomcat installation running on port 8080.
+If you do not have an existing Tomcat installation, or want to start with a fresh installation for OpenEJB, the <a href="tomcat-installation.html">Tomcat Installation</a>  will show you how to setup and verify a Tomcat installation.</p>
+</div>
+<div class="sect2">
+<h3 id="_add_openejb_war_to_tomcat">Add openejb.war to Tomcat</h3>
+<div class="paragraph">
+<p>The TomEE plugin for Tomcat is distributed as a standalone war file containing all of the necessary files and an installer Servlet.
+The war can be obtained from the <a href="download-ng.html">download page</a>.
+Once downloaded, simply copy the file into the Tomcat webapps directory.</p>
+</div>
+<div class="paragraph">
+<p>{deck:id=Copy openejb.war} {card:label=Windows}{noformat:nopanel=true}</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">C:&gt;copy openejb.war apache-tomcat-6.0.14\webapps\openejb.war
+1 file(s) copied.
+
+C:&gt;dir apache-tomcat-6.0.14\webapps  Volume in drive C has no label.
+Volume Serial Number is 0000-0000
+
+Directory of C:\apache-tomcat-6.0.14\webapps
+
+09/20/2007 03:03 PM	.
+09/20/2007 03:03 PM ..
+09/20/2007 03:02 PM docs
+09/20/2007 03:01 PM examples
+09/20/2007 03:01 PM host-manager
+09/20/2007 03:03 PM manager
+09/19/2007 09:31 AM 13,394,733 openejb.war
+09/20/2007 03:01 PM ROOT 1 File(s) 13,394,733 bytes 7 Dir(s) 5,100,126,208 bytes free</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cp openejb.war apache-tomcat-6.0.14/webapps/openejb.war
+
+$ ls apache-tomcat-6.0.14/webapps/
+ROOT/
+docs/
+examples/
+host-manager/
+manager/
+openejb.war</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_run_installer_servlet">Run Installer Servlet</h3>
+<div class="paragraph">
+<p>The OpenEJB Plugin for Tomcat contains an installer servlet which adds the OpenEJB listener and JavaAgent to the Tomcat installation.
+To run the installer, you must first start Tomcat.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">C:&gt;set JRE_HOME=C:\Program Files\Java\jre1.5.0_06
+
+C:&gt;cd apache-tomcat-6.0.14\bin
+
+C:\apache-tomcat-6.0.14\bin&gt;startup.bat Using CATALINA_BASE:   C:\apache-tomcat-6.0.14 Using CATALINA_HOME:   C:\apache-tomcat-6.0.14 Using CATALINA_TMPDIR: C:\apache-tomcat-6.0.14\temp Using JRE_HOME:        C:\your\java\installation</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd apache-tomcat-6.0.14/bin
+
+apache-tomcat-6.0.14/bin$ chmod u+x *.sh
+
+apache-tomcat-6.0.14/bin$ ./startup.sh
+Using CATALINA_BASE:   /your/tomcat/installation/apache-tomcat-6.0.14
+Using CATALINA_HOME:   /your/tomcat/installation/apache-tomcat-6.0.14
+Using CATALINA_TMPDIR: /your/tomcat/installation/apache-tomcat-6.0.14/temp
+Using JRE_HOME:        /your/java/installation</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Your output will be different from the example above due to differences in installation locations.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>It is a good idea to wait a 5-60 seconds (depending on the speed of your computer) for Tomcat to fully start.
+Once Tomcat is fully started, simply visit <a href="http://localhost:8080/openejb/installer" class="bare">http://localhost:8080/openejb/installer</a>  and click the 'install' button to run the installer.
+The installer should report that the installation was successful.
+If it didn&#8217;t work click [OPENEJB:here|#problems] .</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The installer servlet adds the OpenEJB JavaAgent declaration to the catalina.sh and catalina.bat files.
+If you are using an IDE or some other mechanism to start Tomcat, you will need to <a href="manual-installation.html#javaagent.adoc">manually</a>  add the JavaAgent declaration to the Java VM options of the launcher you are using.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_restart_tomcat">Restart Tomcat</h3>
+<div class="paragraph">
+<p>OpenEJB uses OpenJPA for persistence and OpenJPA currently requires a JavaAgent to function.
+Unfortunately, there is no way to install a JavaAgent at runtime, so you will have to restart Tomcat to enable the JavaAgent.
+Simply execute the shutdown command, wait 5-60 seconds (depending on the speed of your computer) for Tomcat to fully stop, and run the startup command to restart Tomcat.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">C:&gt;cd apache-tomcat-6.0.14\bin
+
+C:\apache-tomcat-6.0.14\bin&gt;shutdown.bat Using CATALINA_BASE:   C:\apache-tomcat-6.0.14 Using CATALINA_HOME:   C:\apache-tomcat-6.0.14 Using CATALINA_TMPDIR: C:\apache-tomcat-6.0.14\temp Using JRE_HOME:        C:\your\java\installation
+
+C:\apache-tomcat-6.0.14\bin&gt;startup.bat Using CATALINA_BASE:   C:\apache-tomcat-6.0.14 Using CATALINA_HOME:   C:\apache-tomcat-6.0.14 Using CATALINA_TMPDIR: C:\apache-tomcat-6.0.14\temp Using JRE_HOME:        C:\your\java\installation</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ cd apache-tomcat-6.0.14/bin
+
+apache-tomcat-6.0.14/bin$ ./shutdown.sh
+Using CATALINA_BASE:   /your/tomcat/installation/apache-tomcat-6.0.14
+Using CATALINA_HOME:   /your/tomcat/installation/apache-tomcat-6.0.14
+Using CATALINA_TMPDIR: /your/tomcat/installation/apache-tomcat-6.0.14/temp
+Using JRE_HOME:        /your/java/installation
+
+apache-tomcat-6.0.14/bin$ ./startup.sh
+Using CATALINA_BASE:   /your/tomcat/installation/apache-tomcat-6.0.14
+Using CATALINA_HOME:   /your/tomcat/installation/apache-tomcat-6.0.14
+Using CATALINA_TMPDIR: /your/tomcat/installation/apache-tomcat-6.0.14/temp
+Using JRE_HOME:        /your/java/installation</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Your output will be different from the example above due to differences in installation locations.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once Tomcat is fully started, simply visit <a href="http://localhost:8080/openejb/installer" class="bare">http://localhost:8080/openejb/installer</a>  to verify the installation is complete.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_examples_tutorials_and_tests">Examples, Tutorials and Tests</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_ejb_examples_war">ejb-examples.war</h3>
+<div class="paragraph">
+<p>Download the <a href="http://people.apache.org/~dain/openejb-temp/examples">ejb-examples.war</a> , copy it into the Tomcat webapps directory, and visit <a href="http://localhost:8080/ejb-examples" class="bare">http://localhost:8080/ejb-examples</a> .</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_openejb_itests">OpenEJB iTests</h3>
+<div class="paragraph">
+<p>OpenEJB uses a large test suite to verify the final server assembly, and you can use this to verify your OpenEJB installation.
+Simply download the <a href="http://people.apache.org/~dain/openejb-temp/itests">openejb-itests.war and openejb-standalone-client.jar</a>  and copy it the war into the Tomcat webapps directory.
+It will take a bit to load the application because it contains a huge number of EJBs.
+Finally, run the test client executable jar.</p>
+</div>
+<div class="sect3">
+<h4 id="_start_tomcat">Start Tomcat</h4>
+<div class="listingblock">
+<div class="title">Windows</div>
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">C:&gt;java -jar openejb-itests-standalone-client.jar tomcat
+_________________
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+ _
+
+Running EJB compliance tests on HTTP/Tomcat Server *__**__**__**__**__**__**__***__**_
+WARNING: No test suite configuration file specified, assuming system properties contain all  needed information.
+To specify a test suite configuration file by setting its location using the system property "openejb.testsuite.properties"  test server = org.apache.openejb.test.TomcatRemoteTestServer entry = java.naming.provider.url:http://127.0.0.1:8080/openejb/ejb entry = java.naming.factory.initial:org.apache.openejb.client.RemoteInitialContextFactory .........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+............................
+Time: 20.644
+
+OK (889 tests)
+
+'''
+
+CLIENT JNDI PROPERTIES java.naming.provider.url = http://127.0.0.1:8080/openejb/ejb java.naming.factory.initial = org.apache.openejb.client.RemoteInitialContextFactory *__**__**__**__**__**__**__***__**_</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Unix</div>
+<div class="content">
+<pre class="highlight"><code class="language-console" data-lang="console">$ java -jar openejb-itests-standalone-client.jar tomcat
+_________________________________________________
+________________________
+
+Running EJB compliance tests on HTTP/Tomcat Server
+_________________________________________________
+WARNING: No test suite configuration file specified, assuming system properties contain all
+needed information.  To specify a test suite configuration file by setting its location using
+the system property "openejb.testsuite.properties"
+test server = org.apache.openejb.test.TomcatRemoteTestServer
+entry = java.naming.provider.url:http://127.0.0.1:8080/openejb/ejb
+entry = java.naming.factory.initial:org.apache.openejb.client.RemoteInitialContextFactory
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+.........................................
+............................
+Time: 12.186
+
+OK (889 tests)
+
+
+_________________________________________________
+CLIENT JNDI PROPERTIES
+java.naming.provider.url = http://127.0.0.1:8080/openejb/ejb
+java.naming.factory.initial = org.apache.openejb.client.RemoteInitialContextFactory
+_________________________________________________</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The tests should completely pass the first time they are run.
+If you execute the test client a second time, 21 tests fail for some unknown reason.{tip}
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_problems">Problems?</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_http_status_403">HTTP Status 403</h3>
+<div class="paragraph">
+<p>Did you get a "HTTP Status 403" error page containing the description "Access to the specified resource () has been forbidden." when visiting <a href="http://localhost:8080/openejb" class="bare">http://localhost:8080/openejb</a> ?</p>
+</div>
+<div class="paragraph">
+<p>The openejb.war is protected by a Tomcat valve that restricts access to the application to the computer on which Tomcat is running.
+If your browser is running on the same computer as Tomcat, try accessing OpenEJB using this link instead <a href="http://127.0.0.1:8080/openejb" class="bare">http://127.0.0.1:8080/openejb</a> .</p>
+</div>
+<div class="paragraph">
+<p>If you want to access the openejb.war from another computer, you will need to either remove the valve, or modify the IP list in the valve declaration.
+The easiest way to remove the valve it to simply delete the webapps/openejb/META-INF/context.xml file and and the webapps/openejb.war file <em>while Tomcat is stopped</em>.
+The openejb.war file must be removed because some versions of Tomcat will use the context.xml file packed in the openejb.war file regardless of what is in the unpacked directory.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_other_issues">Other Issues</h3>
+<div class="paragraph">
+<p>If you are having problems with the installation, please send a message to the OpenEJB users <a href="mailing-lists.html">mailing list</a>  containing any error message(s) and the following information:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>OpenEJB Version</p>
+</li>
+<li>
+<p>Tomcat Version</p>
+</li>
+<li>
+<p>Java Version (execute java -version)</p>
+</li>
+<li>
+<p>Operating System Type and Version</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_limitations">Limitations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>Tomcat 6.x</em> - Currently, only Tomcat 6.x is supported due to API difference between 5.5.x and 6.x.
+It is expected that 5.5 will be supported in the future, but there are no plans to support 5.0.x due to the lack of annotation support in 5.0.x.</p>
+</div>
+<div class="paragraph">
+<p><em>Security</em> - Unfortunately, at this time security with Tomcat/OpenEJB is not integrated, but is being worked on.</p>
+</div>
+<div class="paragraph">
+<p><em>EAR Files</em> - The integration only supports war (and collapsed-ear) files.
+EAR, EJB Jar, and RAR files will be supported in a future release.</p>
+</div>
+<div class="paragraph">
+<p><em>JavaAgent</em> - OpenEJB uses OpenJPA to provide JPA and CMP persistence, and OpenJPA currently requires a JavaAgent to function properly.
+This requirement is something that the OpenJPA project is working on removing.
+Once removed, the OpenEJB plugin for Tomcat will no longer need to modify the startup shell scripts and you will not need to restart Tomcat after the OpenEJB installation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_misc">Misc</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document is a starting point for using OpenEJB in Tomcat and will evolve based on user contributions.
+If you wish to contribute to this document, feel very welcome to click the 'Edit' link in the upper right and make changes and add new HOWTO&#8217;s and other docs.</p>
+</div>
+</div>
+</div>
+            </div>
+            
+        </div>
+    </div>
+<div style="margin-bottom: 30px;"></div>
+<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 text-center-mobile">
+					<h3 class="white">Be simple.  Be certified. Be Tomcat.</h3>
+					<h5 class="light regular light-white">"A good application in a good server"</h5>
+					<ul class="social-footer">
+						<li><a href="https://www.facebook.com/ApacheTomEE/"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="https://twitter.com/apachetomee"><i class="fa fa-twitter"></i></a></li>
+					</ul>
+					<h5 class="light regular light-white">
+						<a href="privacy-policy.html" class="white">Privacy Policy</a>
+					</h5>
+				</div>
+				<div class="col-sm-6 text-center-mobile">
+					<div class="row opening-hours">
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="latest/docs/" class="white">Documentation</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="latest/docs/admin/configuration/index.html" class="regular light-white">How to configure</a></li>
+								<li><a href="latest/docs/admin/file-layout.html" class="regular light-white">Dir. Structure</a></li>
+								<li><a href="latest/docs/developer/testing/index.html" class="regular light-white">Testing</a></li>
+								<li><a href="latest/docs/admin/cluster/index.html" class="regular light-white">Clustering</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="latest/examples/" class="white">Examples</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="latest/examples/simple-cdi-interceptor.html" class="regular light-white">CDI Interceptor</a></li>
+								<li><a href="latest/examples/rest-cdi.html" class="regular light-white">REST with CDI</a></li>
+								<li><a href="latest/examples/ejb-examples.html" class="regular light-white">EJB</a></li>
+								<li><a href="latest/examples/jsf-managedBean-and-ejb.html" class="regular light-white">JSF</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="community/index.html" class="white">Community</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="community/contributors.html" class="regular light-white">Contributors</a></li>
+								<li><a href="community/social.html" class="regular light-white">Social</a></li>
+								<li><a href="community/sources.html" class="regular light-white">Sources</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="security/index.html" class="white">Security</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="https://apache.org/security" target="_blank" class="regular light-white">Apache Security</a></li>
+								<li><a href="https://apache.org/security/projects.html" target="_blank" class="regular light-white">Security Projects</a></li>
+								<li><a href="https://cve.mitre.org" target="_blank" class="regular light-white">CVE</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row bottom-footer text-center-mobile">
+				<div class="col-sm-12 light-white">
+					<p>Copyright &copy; 1999-2022 The Apache Software Foundation, Licensed under the Apache License, Version 2.0. Apache TomEE, TomEE, Apache, the Apache feather logo, and the Apache TomEE project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Holder for mobile navigation -->
+	<div class="mobile-nav">
+        <ul>
+          <li><a hef="latest/docs/admin/index.html">Administrators</a>
+          <li><a hef="latest/docs/developer/index.html">Developers</a>
+          <li><a hef="latest/docs/advanced/index.html">Advanced</a>
+          <li><a hef="community/index.html">Community</a>
+        </ul>
+		<a href="#" class="close-link"><i class="arrow_up"></i></a>
+	</div>
+	<!-- Scripts -->
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/typewriter.js"></script>
+	<script src="js/jquery.onepagenav.js"></script>
+	<script src="js/tree.jquery.js"></script>
+	<script src="js/highlight.pack.js"></script>
+    <script src="js/main.js"></script>
+		</body>
+
+</html>
+

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Apache TomEE</title>
+	<meta name="description"
+		  content="Apache TomEE is a lightweight, yet powerful, JavaEE Application server with feature rich tooling." />
+	<meta name="keywords" content="tomee,asf,apache,javaee,jee,shade,embedded,test,junit,applicationcomposer,maven,arquillian" />
+	<meta name="author" content="Luka Cvetinovic for Codrops" />
+	<link rel="icon" href="../favicon.ico">
+	<link rel="icon"  type="image/png" href="../favicon.png">
+	<meta name="msapplication-TileColor" content="#80287a">
+	<meta name="theme-color" content="#80287a">
+	<link rel="stylesheet" type="text/css" href="../css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../css/owl.css">
+	<link rel="stylesheet" type="text/css" href="../css/animate.css">
+	<link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.1.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../fonts/eleganticons/et-icons.css">
+	<link rel="stylesheet" type="text/css" href="../css/jqtree.css">
+	<link rel="stylesheet" type="text/css" href="../css/idea.css">
+	<link rel="stylesheet" type="text/css" href="../css/cardio.css">
+
+	<script type="text/javascript">
+		<!-- Matomo -->
+		var _paq = window._paq = window._paq || [];
+		/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+		/* We explicitly disable cookie tracking to avoid privacy issues */
+		_paq.push(['disableCookies']);
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function () {
+			var u = "//matomo.privacy.apache.org/";
+			_paq.push(['setTrackerUrl', u + 'matomo.php']);
+			_paq.push(['setSiteId', '5']);
+			var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+			g.async = true;
+			g.src = u + 'matomo.js';
+			s.parentNode.insertBefore(g, s);
+		})();
+		<!-- End Matomo Code -->
+    </script>
+</head>
+
+<body>
+    <div class="preloader">
+		<img src="../img/loader.gif" alt="Preloader image">
+	</div>
+	    <nav class="navbar">
+		<div class="container">
+		  <div class="row">          <div class="col-md-12">
+
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/" title="Apache TomEE">
+				    <span>
+
+				    
+                        <img 
+							src="../img/apache_tomee-logo.svg"
+							onerror="this.src='../img/apache_tomee-logo.jpg'"
+							height="50"
+							>
+                    
+
+                    </span>
+                </a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right main-nav">
+					<li><a href="../docs.html">Documentation</a></li>
+					<li><a href="../community/index.html">Community</a></li>
+					<li><a href="../security/security.html">Security</a></li>
+					<li><a class="btn btn-accent accent-orange no-shadow" href="../download.html">Downloads</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		   </div></div>
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+
+    <div id="main-block" class="container main-block">
+        <div class="row title">
+          <div class="col-md-12">
+            <div class='page-header'>
+              
+              <h1>OpenEJB Release Process</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div id="preamble">
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre>Note: This information is largely obsolete and remains here for reference only.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>{code:none} mvn release:prepare -Dusername=dblevins -Dassemble</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>{code:none}
+mvn release:perform -Dassemble -Dusername=dblevins -DaltDeploymentRepository=dblevins::default::scp://people.apache.org/x1/home/dblevins/public_html/stage -Dgpg.passphrase=xxxxx
+
+
+
+mvn clean deploy -Prelease -Dassemble -Dusername=dblevins -DaltDeploymentRepository=dblevins::default::scp://people.apache.org/x1/home/dblevins/public_html/stage/repo -Dgpg.passphrase=xxxxx</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a copy of the trunk the branch will be based on.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>{code:none} svn copy -m "TomEE 1.5.1 branch" \   <a href="https://svn.apache.org/repos/asf/tomee/tomee/trunk" class="bare">https://svn.apache.org/repos/asf/tomee/tomee/trunk</a> \   <a href="https://svn.apache.org/repos/asf/tomee/tomee/branches/tomee-1.5.1" class="bare">https://svn.apache.org/repos/asf/tomee/tomee/branches/tomee-1.5.1</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_merging_things_from_trunk_to_the_branch">Merging things from trunk to the branch</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre>While fixing issues in the branch and trunk in parallel it may happen that some changes in trunk have not been applied to the branch. Provided you're in the branch's directory the following command applies a change from the trunk  to the branch (`{-c 575845`} is the commit number with the fix and the url points to a repo the change is in).
+
+{code:none}
+svn merge -c 575845 https://svn.apache.org/repos/asf/tomee/tomee/trunk</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s a little script that can make merging easier</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>#!/bin/bash
+
+for n in $@; do
+  m=$(($n -1))
+  LOG=/tmp/svn-commit-r$n.log
+
+  cat /dev/null &gt; $LOG
+
+  echo "Merging r$n - http://svn.apache.org/viewvc?rev=$n&amp;view=rev" &gt;&gt; $LOG
+  echo "" &gt;&gt; $LOG
+  echo "svn merge -r $m:$n https://svn.apache.org/repos/asf/tomee/tomee/trunk ." &gt;&gt; $LOG
+  echo "" &gt;&gt; $LOG
+  svn log -r$n https://svn.apache.org/repos/asf/tomee/tomee/trunk &gt;&gt; $LOG
+
+  svn merge -r $m:$n https://svn.apache.org/repos/asf/tomee/tomee/trunk .  &amp;&amp;
+  svn ci -F $LOG
+  echo "$n merged"
+done</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_aggregation_into_a_stage3_x_directory">Aggregation into a stage/3.x directory</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre>#!/bin/bash
+
+VER=3.0
+
+function package () {
+    SOURCE=$1; DEST=${2:-$SOURCE}
+    tar czf $DEST.tar.gz $SOURCE
+    zip -9rq $DEST.zip $SOURCE
+}
+function shash {
+    openssl $1 &lt; $2 &gt; $2.$1 ;
+}
+function sign {
+    archive=$1
+    gpg --armor --output $archive.asc --detach-sig $archive
+    gpg --verify $archive.asc $archive
+}
+
+function fail () { echo $1 &gt;&amp;2; exit 1;}
+
+
+mkdir $VER
+(cd $VER
+
+svn export http://svn.apache.org/repos/asf/openejb/tags/openejb-$VER/examples openejb-examples-$VER
+package openejb-examples-$VER &amp;&amp; rm -r openejb-examples-$VER
+
+svn export http://svn.apache.org/repos/asf/openejb/tags/openejb-$VER openejb-$VER-src
+package openejb-$VER-src &amp;&amp; rm -r openejb-$VER-src
+
+for archive in *.{zip,tar.gz}; do
+    echo $archive
+    shash md5 $archive
+    sign $archive
+done || fail "Unable to sign or hash release archives"
+)
+
+scp -r $VER  people.apache.org:public_html/stage/
+
+# Copy standalone assembly in
+
+ssh people.apache.org "cp ~/public_html/stage/repo/org/apache/openejb/openejb-standalone/$VER/openejb-standalone-$VER.{zip,tar.gz}{,.asc,.md5} ~/public_html/stage/$VER/"
+
+
+echo $VER | ssh people.apache.org 'read VER &amp;&amp; for n in ~/public_html/stage/repo/org/apache/openejb/openejb-standalone/$VER/openejb-standalone-$VER.{zip,tar.gz}{,.asc,.md5}; do cp $n ~/public_html/stage/$VER/$(basename ${n/openejb-standalone-$VER/openejb-$VER}); done'
+
+# Copy tomcat webapp assembly in
+
+echo $VER | ssh people.apache.org 'read VER &amp;&amp; for n in ~/public_html/stage/repo/org/apache/openejb/openejb-tomcat-webapp/$VER/openejb-tomcat-webapp-$VER.war{,.asc,.md5}; do cp $n ~/public_html/stage/$VER/$(basename ${n/-tomcat-webapp-$VER/}); done'</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_release_notes">Release notes</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre>#set( $rpc = $xmlrpc.connect("dblevins:xxxxx","http://issues.apache.org/jira/rpc/xmlrpc") )
+#set( $version = $rpc.getVersion("OPENEJB", "3.0") )
+#set ( $versionId = $version.id )
+#set ( $jira = $rss.fetch("http://issues.apache.org/jira/secure/IssueNavigator.jspa?view=rss&amp;&amp;pid=12310530&amp;status=5&amp;status=6&amp;fixfor=${versionId}&amp;tempMax=1000&amp;reset=true&amp;decorator=none") )
+#set( $issues = $jira.issues )
+
+Apache OpenEJB $version
+
+$date
+
+New Features:
+
+#foreach ( $issue in $issues.equals("type", "New Feature").descending("id") )
+  * [$issue.key]  $issue.summary
+#end
+
+Improvements:
+
+#foreach ( $issue in $issues.equals("type", "Improvement") )
+  * [$issue.key]  $issue.summary
+#end
+
+Bugs:
+
+#foreach ( $issue in $issues.equals("type", "Bug").sort("priority") )
+  * [$issue.key]  $issue.summary
+#end
+
+Tasks &amp; Sub-Tasks:
+
+#foreach ( $issue in $issues.equals("type", "Task").sort("summary") )
+  * [$issue.key]  $issue.summary
+#end
+#foreach ( $issue in $issues.equals("type", "Sub-task").sort("summary") )
+  * [$issue.key]  $issue.summary
+#end
+
+
+
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Unimplemented Features, bugs, limitations
+
+#set ( $jira = $rss.fetch("http://issues.apache.org/jira/secure/IssueNavigator.jspa?view=rss&amp;&amp;pid=12310530&amp;status=1&amp;status=3&amp;status=4&amp;version=${versionId}&amp;tempMax=1000&amp;reset=true&amp;decorator=none") )
+#set( $issues = $jira.issues )
+
+#foreach ( $issue in $issues.sort("priority") )
+  * [$issue.key]  $issue.summary
+#end</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_readme_html_file">README.html file</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>some way to dynamically update this would be great.</p>
+</div>
+<div class="paragraph">
+<p>{code:html} &lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"&gt;<html><head><TITLE>Apache OpenEJB 3.0</TITLE></head><body>[discrete] === Apache OpenEJB 3.0      Packaging Details (or "What Should I Download?")   * OpenEJB Standlone Server:  <strong> <a href="openejb-3.0.zip">openejb-3.0.zip</a>  </strong> <a href="openejb-3.0.tar.gz">openejb-3.0.tar.gz</a> * OpenEJB for Tomcat 6 or Tomcat 5.5:  <strong> <a href="openejb.war">openejb.war</a> * EJB 3.0 and other examples:  </strong> <a href="openejb-examples-3.0.zip">openejb-examples-3.0.zip</a>  <strong> <a href="openejb-examples-3.0.tar.gz">openejb-examples-3.0.tar.gz</a> * Source:  </strong> <a href="openejb-3.0-src.zip">openejb-3.0-src.zip</a>  <strong>* <a href="openejb-3.0-src.tar.gz">openejb-3.0-src.tar.gz</a>   Thank you for using <a href="http://tomee.apache.org/">OpenEJB</a>!.
+*The Apache OpenEJB Project</strong> + <a href="http://tomee.apache.org/" class="bare">http://tomee.apache.org/</a>   &lt;/BODY&gt;&lt;/HTML&gt; # Publishing When all voting is done {code:none} mvn stage:copy -Dsource="http://people.apache.org/~dblevins/stage/repo/" \ -Dtarget="scp://people.apache.org/www/people.apache.org/repo/m2-ibiblio-rsync-repository" \ -DsourceRepositoryId=apache.staging \ -DtargetRepositoryId=apache.releases \ -Dversion=3.0 {code:none} $ mv 3.0 /www/www.apache.org/dist/openejb/</body></html></p>
+</div>
+</div>
+</div>
+            </div>
+            
+        </div>
+    </div>
+<div style="margin-bottom: 30px;"></div>
+<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 text-center-mobile">
+					<h3 class="white">Be simple.  Be certified. Be Tomcat.</h3>
+					<h5 class="light regular light-white">"A good application in a good server"</h5>
+					<ul class="social-footer">
+						<li><a href="https://www.facebook.com/ApacheTomEE/"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="https://twitter.com/apachetomee"><i class="fa fa-twitter"></i></a></li>
+					</ul>
+					<h5 class="light regular light-white">
+						<a href="../privacy-policy.html" class="white">Privacy Policy</a>
+					</h5>
+				</div>
+				<div class="col-sm-6 text-center-mobile">
+					<div class="row opening-hours">
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="../latest/docs/" class="white">Documentation</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="../latest/docs/admin/configuration/index.html" class="regular light-white">How to configure</a></li>
+								<li><a href="../latest/docs/admin/file-layout.html" class="regular light-white">Dir. Structure</a></li>
+								<li><a href="../latest/docs/developer/testing/index.html" class="regular light-white">Testing</a></li>
+								<li><a href="../latest/docs/admin/cluster/index.html" class="regular light-white">Clustering</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="../latest/examples/" class="white">Examples</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="../latest/examples/simple-cdi-interceptor.html" class="regular light-white">CDI Interceptor</a></li>
+								<li><a href="../latest/examples/rest-cdi.html" class="regular light-white">REST with CDI</a></li>
+								<li><a href="../latest/examples/ejb-examples.html" class="regular light-white">EJB</a></li>
+								<li><a href="../latest/examples/jsf-managedBean-and-ejb.html" class="regular light-white">JSF</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="../community/index.html" class="white">Community</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="../community/contributors.html" class="regular light-white">Contributors</a></li>
+								<li><a href="../community/social.html" class="regular light-white">Social</a></li>
+								<li><a href="../community/sources.html" class="regular light-white">Sources</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="../security/index.html" class="white">Security</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="https://apache.org/security" target="_blank" class="regular light-white">Apache Security</a></li>
+								<li><a href="https://apache.org/security/projects.html" target="_blank" class="regular light-white">Security Projects</a></li>
+								<li><a href="https://cve.mitre.org" target="_blank" class="regular light-white">CVE</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row bottom-footer text-center-mobile">
+				<div class="col-sm-12 light-white">
+					<p>Copyright &copy; 1999-2022 The Apache Software Foundation, Licensed under the Apache License, Version 2.0. Apache TomEE, TomEE, Apache, the Apache feather logo, and the Apache TomEE project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Holder for mobile navigation -->
+	<div class="mobile-nav">
+        <ul>
+          <li><a hef="../latest/docs/admin/index.html">Administrators</a>
+          <li><a hef="../latest/docs/developer/index.html">Developers</a>
+          <li><a hef="../latest/docs/advanced/index.html">Advanced</a>
+          <li><a hef="../community/index.html">Community</a>
+        </ul>
+		<a href="#" class="close-link"><i class="arrow_up"></i></a>
+	</div>
+	<!-- Scripts -->
+	<script src="../js/jquery-1.11.1.min.js"></script>
+	<script src="../js/owl.carousel.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/wow.min.js"></script>
+	<script src="../js/typewriter.js"></script>
+	<script src="../js/jquery.onepagenav.js"></script>
+	<script src="../js/tree.jquery.js"></script>
+	<script src="../js/highlight.pack.js"></script>
+    <script src="../js/main.js"></script>
+		</body>
+
+</html>
+

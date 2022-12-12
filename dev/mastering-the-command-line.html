@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Apache TomEE</title>
+	<meta name="description"
+		  content="Apache TomEE is a lightweight, yet powerful, JavaEE Application server with feature rich tooling." />
+	<meta name="keywords" content="tomee,asf,apache,javaee,jee,shade,embedded,test,junit,applicationcomposer,maven,arquillian" />
+	<meta name="author" content="Luka Cvetinovic for Codrops" />
+	<link rel="icon" href="../favicon.ico">
+	<link rel="icon"  type="image/png" href="../favicon.png">
+	<meta name="msapplication-TileColor" content="#80287a">
+	<meta name="theme-color" content="#80287a">
+	<link rel="stylesheet" type="text/css" href="../css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../css/owl.css">
+	<link rel="stylesheet" type="text/css" href="../css/animate.css">
+	<link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.1.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../fonts/eleganticons/et-icons.css">
+	<link rel="stylesheet" type="text/css" href="../css/jqtree.css">
+	<link rel="stylesheet" type="text/css" href="../css/idea.css">
+	<link rel="stylesheet" type="text/css" href="../css/cardio.css">
+
+	<script type="text/javascript">
+		<!-- Matomo -->
+		var _paq = window._paq = window._paq || [];
+		/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+		/* We explicitly disable cookie tracking to avoid privacy issues */
+		_paq.push(['disableCookies']);
+		_paq.push(['trackPageView']);
+		_paq.push(['enableLinkTracking']);
+		(function () {
+			var u = "//matomo.privacy.apache.org/";
+			_paq.push(['setTrackerUrl', u + 'matomo.php']);
+			_paq.push(['setSiteId', '5']);
+			var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+			g.async = true;
+			g.src = u + 'matomo.js';
+			s.parentNode.insertBefore(g, s);
+		})();
+		<!-- End Matomo Code -->
+    </script>
+</head>
+
+<body>
+    <div class="preloader">
+		<img src="../img/loader.gif" alt="Preloader image">
+	</div>
+	    <nav class="navbar">
+		<div class="container">
+		  <div class="row">          <div class="col-md-12">
+
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/" title="Apache TomEE">
+				    <span>
+
+				    
+                        <img 
+							src="../img/apache_tomee-logo.svg"
+							onerror="this.src='../img/apache_tomee-logo.jpg'"
+							height="50"
+							>
+                    
+
+                    </span>
+                </a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right main-nav">
+					<li><a href="../docs.html">Documentation</a></li>
+					<li><a href="../community/index.html">Community</a></li>
+					<li><a href="../security/security.html">Security</a></li>
+					<li><a class="btn btn-accent accent-orange no-shadow" href="../download.html">Downloads</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		   </div></div>
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+
+    <div id="main-block" class="container main-block">
+        <div class="row title">
+          <div class="col-md-12">
+            <div class='page-header'>
+              
+              <h1>Linux/OSX awesomeness</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-md-12">
+                <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Not specific to this projec, but can be incredibly useful ways to maximizes your time.
+Mastering the command line is the best way to get things done, quick and cheaply.</p>
+</div>
+<div class="paragraph">
+<p>Reapeat after me:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>I will write a script for any tasks I do regularly</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_core_commands">Core commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Some very big time-saving commands</p>
+</div>
+<div class="sect2">
+<h3 id="_in_shell_scripts">In shell scripts</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>basename</strong> - what is the file name again?
+not the path, just the file name</p>
+</li>
+<li>
+<p><strong>dirname</strong> - what directory is this in?</p>
+</li>
+<li>
+<p><strong>readllink -f</strong> - what is the absolute path of this file?</p>
+</li>
+<li>
+<p><strong>cat</strong> - spit out the contents of one or more files</p>
+</li>
+<li>
+<p><strong>cp</strong> - copy file or dir</p>
+</li>
+<li>
+<p><strong>scp</strong> - copy file or dir to another machine</p>
+</li>
+<li>
+<p><strong>rsync</strong> - both the above, but so much more awesome</p>
+<div class="ulist">
+<ul>
+<li>
+<p>rsync -av here there</p>
+</li>
+<li>
+<p>rsync -e ssh -av here user@host:there</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>cut</strong> - wish I could i could chop out this column in the middle here</p>
+</li>
+<li>
+<p><strong>date</strong> - would be nice if I had some way to make this log file name a little more unique</p>
+</li>
+<li>
+<p><strong>echo</strong> - System.out.println()</p>
+</li>
+<li>
+<p><strong>xargs</strong> - can be useful but doesn&#8217;t respect paths with spaces.
+I only use it sometimes</p>
+</li>
+<li>
+<p><strong>find</strong> - find some files and potentially execute a command against them</p>
+</li>
+<li>
+<p><strong>egrep</strong> - search for text in a file or from STDIN.
+better than grep</p>
+</li>
+<li>
+<p><strong>mkdir</strong> - makes a dir, with -p will make parent dirs too</p>
+</li>
+<li>
+<p><strong>mv</strong> - move a file</p>
+</li>
+<li>
+<p><strong>head</strong> - spit out the first N lines of a file</p>
+</li>
+<li>
+<p><strong>tail</strong> - spit out the last N lines of a file</p>
+</li>
+<li>
+<p><strong>tee</strong> - I want to see the output of this command, but I also want to write it to a file.
+Oh!
+tee is awesome!</p>
+</li>
+<li>
+<p><strong>perl</strong> - edit a stream:  cat file.txt</p>
+<div class="ulist">
+<ul>
+<li>
+<p>edit a file: perl -i -pe 's/this/that/'</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>pwd</strong> - where am I?</p>
+</li>
+<li>
+<p><strong>rm</strong> - delete</p>
+</li>
+<li>
+<p><strong>read (bash)</strong> - I dig this out for strings with spaces.
+paths have spaces in them sometimes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ls *.txt</p>
+</li>
+<li>
+<p>find . -name "*.txt"</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>export (bash)</strong> - why can&#8217;t my script find this command?
+i use this to debug scripts 'export &gt; /tmp/script-env.txt'</p>
+</li>
+<li>
+<p><strong>for (bash)</strong> - my favorite bash construct</p>
+<div class="ulist">
+<ul>
+<li>
+<p>for n in one two three;
+do echo "$n";
+done</p>
+</li>
+<li>
+<p>(side note, always quote your variables like "$n" vs $n, trust me it&#8217;s a good habit)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>while  (bash)</strong> - my second favorite bash construct</p>
+<div class="ulist">
+<ul>
+<li>
+<p>loop forever and do something: while true;
+do my_command;
+sleep 10;
+done</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>sleep</strong> - Thread.sleep().
+Only accepts seconds.
+I typically do the math with bash sytax</p>
+<div class="ulist">
+<ul>
+<li>
+<p>sleep for an hour:  sleep $60 * 60</p>
+</li>
+<li>
+<p>sleep for a day:  sleep $60 * 60 * 24</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>sort</strong> - sort lines of text</p>
+</li>
+<li>
+<p><strong>uniq</strong> - trim out the duplicates</p>
+<div class="ulist">
+<ul>
+<li>
+<p>show me only things that had duplicates: uniq -d</p>
+</li>
+<li>
+<p>( I always 'sort</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>ssh</strong> - awesomeness.
+can execute commands remotely too</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ssh people.apache.org pwd</p>
+</li>
+<li>
+<p>ssh people.apache.org 'pwd</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>sudo</strong> - I wish I were a fish.
+I wish I were a fish.</p>
+</li>
+<li>
+<p><strong>tar</strong> - package up some stuff</p>
+</li>
+<li>
+<p><strong>wget</strong> - download this url</p>
+<div class="ulist">
+<ul>
+<li>
+<p>wget <a href="http://apache.org" class="bare">http://apache.org</a></p>
+</li>
+<li>
+<p>wget -q -O - <a href="http://apache.org" class="bare">http://apache.org</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>tr</strong> - echo $PATH</p>
+</li>
+<li>
+<p><strong>uname</strong> - what system am I on?</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_osx_commands">OSX commands</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>pbpaste</strong> - paste the contents of the clipboard to stdout</p>
+</li>
+<li>
+<p><strong>pbcopy</strong> - copy stdin to the clipbboard</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running_shell_scripts">running shell scripts</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>bash</strong> - quick way to run a script if it isn&#8217;t already executable</p>
+</li>
+<li>
+<p><strong>chmod</strong> - this file should be executable</p>
+</li>
+<li>
+<p><strong>clear</strong> - my terminal is messy</p>
+</li>
+<li>
+<p><strong>diff/patch</strong> - comparing or merging file contents</p>
+</li>
+<li>
+<p><strong>ps/kill</strong> - my script is running too long, i want to force it to stop</p>
+</li>
+<li>
+<p><strong>less</strong> - paging through command line output</p>
+</li>
+<li>
+<p><strong>nohup</strong> - I don&#8217;t want this script to die if my connection is interrupted</p>
+</li>
+<li>
+<p><strong>which</strong> - where does this command live?</p>
+</li>
+<li>
+<p><strong>crontab</strong> - schedule something to run regularly (i use 'bash -l foo.sh' to run stuff in my crontab file)</p>
+</li>
+<li>
+<p><strong>shutdown</strong> - shutdown or restart a machine</p>
+</li>
+<li>
+<p><strong>top</strong> - what the heck is chewing up my cpu?</p>
+</li>
+<li>
+<p><strong>uname</strong> - what system am I on?</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_i_never_use">I never use</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Some people like it.
+sed&#8201;&#8212;&#8201;i always use "perl -pe 's/find/replace/'")</p>
+</div>
+<div class="paragraph">
+<p>Getting used to using perl is better.
+This page was originally written thinking markdown had table support like confluence does.
+Soo all lines where using "| command | description |" formatting.
+Markdown doesn&#8217;t have that, so I changed it to a list syntax with the following command on my mac:</p>
+</div>
+<div class="paragraph">
+<p><code>pbpaste | perl -ne '@f = split(" *\\| *", $_);
+print " - **$f[1]** - $f[2]\n"' | pbcopy</code></p>
+</div>
+</div>
+</div>
+            </div>
+            
+        </div>
+    </div>
+<div style="margin-bottom: 30px;"></div>
+<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 text-center-mobile">
+					<h3 class="white">Be simple.  Be certified. Be Tomcat.</h3>
+					<h5 class="light regular light-white">"A good application in a good server"</h5>
+					<ul class="social-footer">
+						<li><a href="https://www.facebook.com/ApacheTomEE/"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="https://twitter.com/apachetomee"><i class="fa fa-twitter"></i></a></li>
+					</ul>
+					<h5 class="light regular light-white">
+						<a href="../privacy-policy.html" class="white">Privacy Policy</a>
+					</h5>
+				</div>
+				<div class="col-sm-6 text-center-mobile">
+					<div class="row opening-hours">
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="../latest/docs/" class="white">Documentation</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="../latest/docs/admin/configuration/index.html" class="regular light-white">How to configure</a></li>
+								<li><a href="../latest/docs/admin/file-layout.html" class="regular light-white">Dir. Structure</a></li>
+								<li><a href="../latest/docs/developer/testing/index.html" class="regular light-white">Testing</a></li>
+								<li><a href="../latest/docs/admin/cluster/index.html" class="regular light-white">Clustering</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="../latest/examples/" class="white">Examples</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="../latest/examples/simple-cdi-interceptor.html" class="regular light-white">CDI Interceptor</a></li>
+								<li><a href="../latest/examples/rest-cdi.html" class="regular light-white">REST with CDI</a></li>
+								<li><a href="../latest/examples/ejb-examples.html" class="regular light-white">EJB</a></li>
+								<li><a href="../latest/examples/jsf-managedBean-and-ejb.html" class="regular light-white">JSF</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="../community/index.html" class="white">Community</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="../community/contributors.html" class="regular light-white">Contributors</a></li>
+								<li><a href="../community/social.html" class="regular light-white">Social</a></li>
+								<li><a href="../community/sources.html" class="regular light-white">Sources</a></li>
+							</ul>
+						</div>
+						<div class="col-sm-3 text-center-mobile">
+							<h5><a href="../security/index.html" class="white">Security</a></h5>
+							<ul class="list-unstyled">
+								<li><a href="https://apache.org/security" target="_blank" class="regular light-white">Apache Security</a></li>
+								<li><a href="https://apache.org/security/projects.html" target="_blank" class="regular light-white">Security Projects</a></li>
+								<li><a href="https://cve.mitre.org" target="_blank" class="regular light-white">CVE</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row bottom-footer text-center-mobile">
+				<div class="col-sm-12 light-white">
+					<p>Copyright &copy; 1999-2022 The Apache Software Foundation, Licensed under the Apache License, Version 2.0. Apache TomEE, TomEE, Apache, the Apache feather logo, and the Apache TomEE project logo are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Holder for mobile navigation -->
+	<div class="mobile-nav">
+        <ul>
+          <li><a hef="../latest/docs/admin/index.html">Administrators</a>
+          <li><a hef="../latest/docs/developer/index.html">Developers</a>
+          <li><a hef="../latest/docs/advanced/index.html">Advanced</a>
+          <li><a hef="../community/index.html">Community</a>
+        </ul>
+		<a href="#" class="close-link"><i class="arrow_up"></i></a>
+	</div>
+	<!-- Scripts -->
+	<script src="../js/jquery-1.11.1.min.js"></script>
+	<script src="../js/owl.carousel.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/wow.min.js"></script>
+	<script src="../js/typewriter.js"></script>
+	<script src="../js/jquery.onepagenav.js"></script>
+	<script src="../js/tree.jquery.js"></script>
+	<script src="../js/highlight.pack.js"></script>
+    <script src="../js/main.js"></script>
+		</body>
+
+</html>
+
